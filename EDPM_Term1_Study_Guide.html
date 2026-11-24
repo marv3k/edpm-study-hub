@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EDPM End-of-Term Study Guide (Term 1) | Grade 9 &amp; 10 CSEC</title>
+  <!-- Load Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Load Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              50: '#f0f5fa',
+              100: '#dce7f3',
+              200: '#b9cfe8',
+              300: '#8ab0d8',
+              500: '#2b579a',
+              600: '#1e3a8a',
+              700: '#172e6e',
+              800: '#0f294a',
+              900: '#0a1c33',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      color: #0f294a;
+    }
+
+    /* Offset for sticky navbar when clicking anchor links */
+    section[id] {
+      scroll-margin-top: 5.5rem;
+    }
+
+    /* Highlighted text style during live search */
+    mark.search-highlight {
+      background-color: #fef08a;
+      color: #0f294a;
+      padding: 0.1rem 0.25rem;
+      border-radius: 0.25rem;
+      font-weight: 600;
+    }
+
+    /* Print optimization */
+    @media print {
+      header, #search-status-bar, #no-results-box, .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+      }
+      section {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-navy-100 selection:text-navy-900">
+
+  <!-- =========================================================
+       STICKY TOP NAVIGATION BAR (NAVY BLUE & WHITE)
+  ========================================================== -->
+  <header class="sticky top-0 z-50 bg-navy-800 text-white shadow-md border-b border-navy-700">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between py-3 gap-3">
+        
+        <!-- Brand & Mobile Menu Toggle -->
+        <div class="flex items-center justify-between">
+          <a href="#" class="flex items-center gap-3 group">
+            <div class="w-15 h-10 rounded-xl bg-white text-navy-800 flex items-center justify-center font-extrabold text-lg shadow-sm group-hover:bg-navy-50 transition">
+              EDPM
+            </div>
+            <div>
+              <span class="block text-base sm:text-lg font-bold tracking-tight leading-tight text-white">EDPM Term 1 Study Guide</span>
+              <span class="block text-xs text-navy-200 font-medium">Grade 9 &amp; 10 Combined &bull; CSEC</span>
+            </div>
+          </a>
+
+          <!-- Mobile Hamburger Button -->
+          <button
+            id="mobile-menu-btn"
+            type="button"
+            aria-label="Toggle Navigation Menu"
+            class="lg:hidden p-2.5 rounded-lg bg-navy-700 hover:bg-navy-600 text-white focus:outline-none focus:ring-2 focus:ring-white"
+          >
+            <svg id="menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Nav Links + Search Box -->
+        <div id="nav-collapsible" class="hidden lg:flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-4 pt-2 lg:pt-0 border-t lg:border-t-0 border-navy-700">
+          
+          <!-- Section Anchor Links -->
+          <nav aria-label="Study Guide Sections" class="flex flex-wrap items-center gap-1 sm:gap-1.5 text-xs sm:text-sm font-medium">
+            <a href="#topic-1" class="nav-link px-2.5 py-1.5 rounded-lg text-navy-100 hover:text-white hover:bg-navy-700 transition">Topic 1: Input Devices</a>
+            <a href="#topic-2" class="nav-link px-2.5 py-1.5 rounded-lg text-navy-100 hover:text-white hover:bg-navy-700 transition">Topic 2: Storage &amp; Memory</a>
+            <a href="#topic-3" class="nav-link px-2.5 py-1.5 rounded-lg text-navy-100 hover:text-white hover:bg-navy-700 transition">Topic 3: Security &amp; Ergonomics</a>
+            <a href="#topic-4" class="nav-link px-2.5 py-1.5 rounded-lg text-navy-100 hover:text-white hover:bg-navy-700 transition">Topic 4: Business Docs &amp; SBA</a>
+            <a href="#checklist" class="nav-link px-2.5 py-1.5 rounded-lg text-navy-100 hover:text-white hover:bg-navy-700 transition">Exam Checklist</a>
+            <a href="EDPM_Term1_Mock_Exam.html" class="nav-link px-3 py-1.5 rounded-lg bg-white text-navy-800 font-semibold hover:bg-navy-50 transition shadow-sm">Take Mock Exam &rarr;</a>
+          </nav>
+
+          <!-- Real-Time Search Box -->
+          <div class="relative w-full lg:w-64">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-navy-300">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M16.65 10.825a5.825 5.825 0 11-11.65 0 5.825 5.825 0 0111.65 0z" />
+              </svg>
+            </span>
+            <input
+              id="study-search"
+              type="text"
+              placeholder="Search (e.g. RAM, OMR, Memo)..."
+              aria-label="Search study guide"
+              class="w-full pl-9 pr-8 py-1.5 text-sm bg-navy-900 text-white placeholder-navy-300 border border-navy-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:border-white transition"
+            />
+            <button
+              id="clear-search-btn"
+              type="button"
+              title="Clear search"
+              aria-label="Clear search"
+              class="hidden absolute inset-y-0 right-0 pr-2.5 flex items-center text-navy-200 hover:text-white"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Live Search Filter Banner (appears when searching) -->
+  <div id="search-status-bar" class="hidden bg-navy-50 border-b border-navy-200 text-navy-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between text-sm">
+      <p id="search-status-text" class="font-medium"></p>
+      <button id="reset-search-link" type="button" class="text-navy-600 font-semibold underline hover:text-navy-900">
+        Reset Search Filter
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       HERO HEADER BANNER
+  ========================================================== -->
+  <div class="bg-white border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div class="max-w-3xl">
+          <div class="flex flex-wrap items-center gap-2 mb-3">
+            <span class="px-3 py-1 rounded-full bg-navy-800 text-white text-xs font-semibold tracking-wide">
+              Grade: Grade 9 / 10 Combined
+            </span>
+            <span class="px-3 py-1 rounded-full bg-navy-50 text-navy-800 border border-navy-200 text-xs font-semibold">
+              Subject: Electronic Document Preparation &amp; Management (EDPM)
+            </span>
+          </div>
+          <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-navy-800 mb-2">
+            EDPM End-of-Term Study Guide (Term 1)
+          </h1>
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+            <strong>Textbook Reference:</strong> <em>Electronic Document Preparation &amp; Management for CSEC Examinations</em> (Holdip &amp; Holdip Julien)
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row md:flex-col gap-2.5 shrink-0 no-print">
+          <a
+            href="EDPM_Term1_Mock_Exam.html"
+            class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-navy-800 hover:bg-navy-600 text-white font-semibold text-sm shadow-sm transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navy-600 text-center"
+          >
+            Take Practice Mock Exam &rarr;
+          </a>
+          <button
+            type="button"
+            onclick="window.print()"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-navy-50 text-navy-800 border border-navy-200 font-semibold text-sm transition"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            Print Study Guide
+          </button>
+          <a
+            href="#checklist"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-xl bg-navy-50 hover:bg-navy-100 text-navy-800 border border-navy-200 font-semibold text-xs transition text-center"
+          >
+            Jump to Exam Checklist &darr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MAIN STUDY CONTENT CONTAINER
+  ========================================================== -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-10">
+
+    <!-- Empty Search State Message -->
+    <div id="no-results-box" class="hidden bg-white rounded-2xl border border-slate-200 shadow-sm p-10 text-center">
+      <div class="w-12 h-12 rounded-full bg-navy-50 text-navy-600 flex items-center justify-center mx-auto mb-3">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M16.65 10.825a5.825 5.825 0 11-11.65 0 5.825 5.825 0 0111.65 0z" />
+        </svg>
+      </div>
+      <h2 class="text-lg font-bold text-navy-800 mb-1">No matching topics found</h2>
+      <p class="text-sm text-slate-600 mb-4">Try searching for keywords like <strong>RAM</strong>, <strong>OMR</strong>, <strong>Barcode</strong>, <strong>Firewall</strong>, or <strong>Memo</strong>.</p>
+      <button type="button" id="empty-reset-btn" class="px-4 py-2 rounded-lg bg-navy-800 text-white text-sm font-semibold hover:bg-navy-600 transition">
+        Clear Search Filter
+      </button>
+    </div>
+
+    <!-- =======================================================
+         TOPIC 1: INPUT DEVICES & PERIPHERALS (CHAPTER 2)
+    ======================================================== -->
+    <section id="topic-1" class="study-section bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="bg-navy-800 text-white px-6 py-5 flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-navy-200">Chapter 2 &bull; Hardware Basics</span>
+          <h2 class="text-xl sm:text-2xl font-bold">Topic 1: Input Devices &amp; Peripherals</h2>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-white">
+          Manual vs. Automated Entry
+        </span>
+      </div>
+
+      <div class="p-6 space-y-8">
+        <!-- Peripheral Definition Callout -->
+        <div class="searchable-block bg-navy-50 border-l-4 border-navy-600 rounded-r-xl p-4 sm:p-5">
+          <h3 class="text-sm font-bold uppercase tracking-wide text-navy-800 mb-1">What is a Peripheral Device?</h3>
+          <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
+            A <strong>peripheral device</strong> is any extra piece of hardware plugged into or connected to the main computer system (CPU) so you can put information in, get information out, or save your work.
+          </p>
+        </div>
+
+        <!-- Two Ways to Enter Data -->
+        <div>
+          <h3 class="text-lg font-bold text-navy-800 mb-4">Two Ways to Enter Data</h3>
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- 1. Manual Input Devices (4 cols) -->
+            <div class="lg:col-span-5 space-y-3">
+              <div class="flex items-center gap-2 pb-2 border-b border-slate-200">
+                <span class="px-2.5 py-0.5 rounded-md bg-navy-600 text-white text-xs font-bold">1</span>
+                <h4 class="font-bold text-navy-800 text-base">Manual Input Devices <span class="text-xs font-normal text-slate-500">(You do the work)</span></h4>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600">Tools where a person has to type, click, tap, or speak to enter information.</p>
+
+              <div class="space-y-3">
+                <div class="searchable-block rounded-xl border border-slate-200 bg-slate-50 p-4">
+                  <span class="inline-block px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-[11px] font-bold uppercase mb-1">Manual</span>
+                  <h5 class="font-bold text-navy-800 text-sm sm:text-base">Keyboard &amp; Mouse</h5>
+                  <p class="text-sm text-slate-700 mt-1">Used for typing documents and moving the cursor around the screen.</p>
+                </div>
+
+                <div class="searchable-block rounded-xl border border-slate-200 bg-slate-50 p-4">
+                  <span class="inline-block px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-[11px] font-bold uppercase mb-1">Manual</span>
+                  <h5 class="font-bold text-navy-800 text-sm sm:text-base">Touchscreen</h5>
+                  <p class="text-sm text-slate-700 mt-1">Lets you tap directly on the screen using your finger or a stylus (detects either <strong>finger pressure</strong> or <strong>body heat</strong>).</p>
+                </div>
+
+                <div class="searchable-block rounded-xl border border-slate-200 bg-slate-50 p-4">
+                  <span class="inline-block px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-[11px] font-bold uppercase mb-1">Manual</span>
+                  <h5 class="font-bold text-navy-800 text-sm sm:text-base">Microphone</h5>
+                  <p class="text-sm text-slate-700 mt-1">Captures sound and spoken words.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Direct / Automated Data Entry Devices (7 cols) -->
+            <div class="lg:col-span-7 space-y-3">
+              <div class="flex items-center gap-2 pb-2 border-b border-slate-200">
+                <span class="px-2.5 py-0.5 rounded-md bg-navy-800 text-white text-xs font-bold">2</span>
+                <h4 class="font-bold text-navy-800 text-base">Direct / Automated Data Entry Devices <span class="text-xs font-normal text-slate-500">(The machine reads it for you)</span></h4>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600">Fast scanners that read special codes or marks straight off a page or card without anyone typing.</p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 hover:border-navy-300 transition">
+                  <span class="inline-block px-2 py-0.5 rounded bg-navy-800 text-white text-[11px] font-bold uppercase mb-1">Automated</span>
+                  <h5 class="font-bold text-navy-800 text-sm sm:text-base">Barcode &amp; QR Code Reader</h5>
+                  <p class="text-sm text-slate-700 mt-1">Uses a laser beam to scan black-and-white lines on store items to check prices and track stock.</p>
+                </div>
+
+                <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 hover:border-navy-300 transition">
+                  <span class="inline-block px-2 py-0.5 rounded bg-navy-800 text-white text-[11px] font-bold uppercase mb-1">Automated</span>
+                  <h5 class="font-bold text-navy-800 text-sm sm:text-base">Optical Mark Reader (OMR)</h5>
+                  <p class="text-sm text-slate-700 mt-1">Reads shaded pencil bubbles on paper forms—used by CXC to mark <strong>Paper 1</strong> multiple-choice exam sheets.</p>
+                </div>
+
+                <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 hover:border-navy-300 transition">
+                  <span class="inline-block px-2 py-0.5 rounded bg-navy-800 text-white text-[11px] font-bold uppercase mb-1">Automated</span>
+                  <h5 class="font-bold text-navy-800 text-sm sm:text-base">Optical Character Reader (OCR)</h5>
+                  <p class="text-sm text-slate-700 mt-1">Scans printed paper text and turns it into editable words inside a word processor on your computer.</p>
+                </div>
+
+                <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 hover:border-navy-300 transition">
+                  <span class="inline-block px-2 py-0.5 rounded bg-navy-800 text-white text-[11px] font-bold uppercase mb-1">Automated</span>
+                  <h5 class="font-bold text-navy-800 text-sm sm:text-base">Magnetic Ink Character Reader (MICR)</h5>
+                  <p class="text-sm text-slate-700 mt-1">Reads the special magnetic ink numbers printed along the bottom of bank cheques.</p>
+                </div>
+
+                <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 hover:border-navy-300 transition">
+                  <span class="inline-block px-2 py-0.5 rounded bg-navy-800 text-white text-[11px] font-bold uppercase mb-1">Automated</span>
+                  <h5 class="font-bold text-navy-800 text-sm sm:text-base">Magnetic Stripe &amp; Smart Card Reader</h5>
+                  <p class="text-sm text-slate-700 mt-1">Reads account details stored on the black strip or gold chip on bank and credit cards.</p>
+                </div>
+
+                <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 hover:border-navy-300 transition">
+                  <span class="inline-block px-2 py-0.5 rounded bg-navy-800 text-white text-[11px] font-bold uppercase mb-1">Automated</span>
+                  <h5 class="font-bold text-navy-800 text-sm sm:text-base">Biometric Scanner</h5>
+                  <p class="text-sm text-slate-700 mt-1">Checks unique physical body features—like your fingerprint, palm print, or face—to unlock doors or devices.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Side-by-Side Comparison Card: Speech-to-Text vs. Voice-to-Text -->
+        <div>
+          <h3 class="text-lg font-bold text-navy-800 mb-3">Speech-to-Text vs. Voice-to-Text <span class="text-sm font-semibold text-navy-600">(Know the Difference!)</span></h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            <!-- Speech-to-Text Card -->
+            <div class="searchable-block rounded-xl border-2 border-navy-200 bg-navy-50/70 p-5">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-1 rounded-md bg-navy-600 text-white text-xs font-bold uppercase">Speech-to-Text</span>
+                <span class="text-xs font-semibold text-navy-700">Speech Recognition</span>
+              </div>
+              <h4 class="text-base font-bold text-navy-900 mb-2">Focuses on <span class="underline decoration-navy-600 decoration-2">WHAT</span> words are being spoken</h4>
+              <p class="text-sm text-slate-700 leading-relaxed">
+                It turns spoken words into live written text on a screen. This helps people type hands-free and allows people who are <strong>deaf or hard of hearing</strong> to read what someone is saying.
+              </p>
+            </div>
+
+            <!-- Voice-to-Text Card -->
+            <div class="searchable-block rounded-xl border-2 border-navy-800 bg-white p-5">
+              <div class="flex items-center justify-between mb-2">
+                <span class="px-2.5 py-1 rounded-md bg-navy-800 text-white text-xs font-bold uppercase">Voice-to-Text</span>
+                <span class="text-xs font-semibold text-navy-700">Voice Recognition</span>
+              </div>
+              <h4 class="text-base font-bold text-navy-900 mb-2">Focuses on <span class="underline decoration-navy-800 decoration-2">WHO</span> is speaking</h4>
+              <p class="text-sm text-slate-700 leading-relaxed">
+                It listens to the unique sound of your specific voice (like a <strong>vocal fingerprint</strong>) to confirm your identity for security.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         TOPIC 2: COMPUTER STORAGE DEVICES & MEMORY (CHAPTER 4)
+    ======================================================== -->
+    <section id="topic-2" class="study-section bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="bg-navy-800 text-white px-6 py-5 flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-navy-200">Chapter 4 &bull; Data &amp; Memory</span>
+          <h2 class="text-xl sm:text-2xl font-bold">Topic 2: Computer Storage Devices &amp; Memory</h2>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-white">
+          1 Terabyte (TB) = 1,024 Gigabytes (GB)
+        </span>
+      </div>
+
+      <div class="p-6 space-y-8">
+        <!-- How We Measure Storage Space + Interactive Converter -->
+        <div>
+          <h3 class="text-lg font-bold text-navy-800 mb-3">How We Measure Storage Space</h3>
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+            
+            <!-- 3 Unit Cards (8 cols) -->
+            <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="searchable-block rounded-xl border border-slate-200 bg-slate-50 p-4">
+                <span class="text-xs font-bold text-navy-600 uppercase">Unit 1 &bull; Smallest</span>
+                <h4 class="text-lg font-extrabold text-navy-800 mt-1">Byte</h4>
+                <p class="text-sm text-slate-700 mt-2">
+                  The smallest basic unit of storage. <strong>1 Byte</strong> holds just <strong>one single letter or character</strong> (such as <code class="px-1.5 py-0.5 bg-white rounded border text-xs">"A"</code> or <code class="px-1.5 py-0.5 bg-white rounded border text-xs">"$"</code>).
+                </p>
+              </div>
+
+              <div class="searchable-block rounded-xl border border-slate-200 bg-slate-50 p-4">
+                <span class="text-xs font-bold text-navy-600 uppercase">Unit 2 &bull; Medium</span>
+                <h4 class="text-lg font-extrabold text-navy-800 mt-1">Gigabyte (GB)</h4>
+                <p class="text-sm text-slate-700 mt-2">
+                  Equal to about <strong>1 billion bytes</strong>. Small flash drives and memory cards usually hold 1 to 64 GB.
+                </p>
+              </div>
+
+              <div class="searchable-block rounded-xl border border-slate-200 bg-slate-50 p-4">
+                <span class="text-xs font-bold text-navy-600 uppercase">Unit 3 &bull; Massive</span>
+                <h4 class="text-lg font-extrabold text-navy-800 mt-1">Terabyte (TB)</h4>
+                <p class="text-sm text-slate-700 mt-2">
+                  Equal to <strong>1,024 Gigabytes</strong> (about 1 trillion bytes). Modern laptops and desktop computers use terabytes to store massive amounts of files.
+                </p>
+              </div>
+            </div>
+
+            <!-- Memory Rule + Interactive TB to GB Calculator (4 cols) -->
+            <div class="lg:col-span-4 rounded-xl border-2 border-navy-200 bg-navy-50 p-4 flex flex-col justify-between">
+              <div class="searchable-block">
+                <span class="inline-block px-2 py-0.5 rounded bg-navy-800 text-white text-[11px] font-bold uppercase mb-1">Memory Rule</span>
+                <p class="text-sm font-extrabold text-navy-900">1 Terabyte (TB) = 1,024 Gigabytes (GB)</p>
+              </div>
+              <div class="mt-3 pt-3 border-t border-navy-200 no-print">
+                <label for="tb-input" class="block text-xs font-semibold text-navy-700 mb-1.5">Interactive TB &rarr; GB Calculator:</label>
+                <div class="flex items-center gap-2">
+                  <input
+                    id="tb-input"
+                    type="number"
+                    min="0"
+                    step="0.5"
+                    value="2"
+                    class="w-20 px-2.5 py-1.5 text-sm font-bold text-navy-900 bg-white border border-navy-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-navy-600"
+                  />
+                  <span class="text-xs font-bold text-navy-700">TB =</span>
+                  <div id="gb-output" class="flex-1 px-3 py-1.5 bg-white border border-navy-200 rounded-lg text-sm font-extrabold text-navy-800 text-right">
+                    2,048 GB
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Three Simple Ways to Group Storage -->
+        <div>
+          <h3 class="text-lg font-bold text-navy-800 mb-3">Three Simple Ways to Group Storage</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <div class="searchable-block rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-6 h-6 rounded-full bg-navy-800 text-white text-xs font-bold flex items-center justify-center">1</span>
+                <h4 class="font-bold text-navy-800 text-base">Internal vs. External</h4>
+              </div>
+              <p class="text-sm text-slate-700 leading-relaxed">
+                <strong>Internal</strong> storage is built right inside the computer case. <strong>External</strong> storage plugs in from the outside using a cable or wireless connection.
+              </p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-6 h-6 rounded-full bg-navy-800 text-white text-xs font-bold flex items-center justify-center">2</span>
+                <h4 class="font-bold text-navy-800 text-base">Primary vs. Secondary</h4>
+              </div>
+              <p class="text-sm text-slate-700 leading-relaxed">
+                <strong>Primary</strong> storage is built-in memory the computer <em>must have</em> to start up and run. <strong>Secondary</strong> storage is extra space used to keep your personal files, photos, and videos safe.
+              </p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-6 h-6 rounded-full bg-navy-800 text-white text-xs font-bold flex items-center justify-center">3</span>
+                <h4 class="font-bold text-navy-800 text-base">Volatile vs. Non-Volatile</h4>
+              </div>
+              <ul class="space-y-1.5 text-sm text-slate-700">
+                <li>&bull; <strong>Volatile (Temporary):</strong> Forgetful memory. It needs electricity to hold data—if the power cuts off, everything inside is erased.</li>
+                <li>&bull; <strong>Non-Volatile (Permanent):</strong> Safe memory. It keeps your files saved even when the computer is turned completely off.</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Built-In (Internal) Memory Types -->
+        <div>
+          <h3 class="text-lg font-bold text-navy-800 mb-3">Built-In (Internal) Memory Types</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 hover:border-navy-300 transition">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                <h4 class="font-bold text-navy-800 text-base">ROM (Read-Only Memory)</h4>
+                <div class="flex gap-1.5">
+                  <span class="px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-[11px] font-bold">Primary</span>
+                  <span class="px-2 py-0.5 rounded bg-navy-800 text-white text-[11px] font-bold">Non-Volatile</span>
+                </div>
+              </div>
+              <p class="text-sm text-slate-700">Primary, non-volatile chip that holds the permanent startup instructions the computer needs just to wake up and turn on.</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 hover:border-navy-300 transition">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                <h4 class="font-bold text-navy-800 text-base">RAM (Random-Access Memory)</h4>
+                <div class="flex gap-1.5">
+                  <span class="px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-[11px] font-bold">Primary</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-200 text-slate-800 text-[11px] font-bold">Volatile</span>
+                </div>
+              </div>
+              <p class="text-sm text-slate-700">Primary, volatile working memory. It holds the apps and files you are actively working on <em>right now</em>.</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 hover:border-navy-300 transition">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                <h4 class="font-bold text-navy-800 text-base">Cache Memory</h4>
+                <div class="flex gap-1.5">
+                  <span class="px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-[11px] font-bold">Primary</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-200 text-slate-800 text-[11px] font-bold">Volatile</span>
+                </div>
+              </div>
+              <p class="text-sm text-slate-700">Super-fast, volatile helper memory that grabs frequently used information from RAM so the computer's brain (CPU) can reach it instantly.</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 hover:border-navy-300 transition">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                <h4 class="font-bold text-navy-800 text-base">IHDD (Internal Hard Disk Drive)</h4>
+                <div class="flex gap-1.5">
+                  <span class="px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-[11px] font-bold">Primary</span>
+                  <span class="px-2 py-0.5 rounded bg-navy-800 text-white text-[11px] font-bold">Non-Volatile</span>
+                </div>
+              </div>
+              <p class="text-sm text-slate-700">Primary, non-volatile main storage drive inside the computer. It uses spinning magnetic platters to permanently save all your files and programs.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Extra (Secondary) & Online Storage Types -->
+        <div>
+          <h3 class="text-lg font-bold text-navy-800 mb-3">Extra (Secondary) &amp; Online Storage Types</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            <div class="searchable-block rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <span class="inline-block px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-[11px] font-bold uppercase mb-1">Secondary Storage</span>
+              <h4 class="font-bold text-navy-800 text-base">External Hard Disk Drive (EHDD)</h4>
+              <p class="text-sm text-slate-700 mt-1">A portable box with spinning magnetic disks inside that connects via USB cable. Holds huge amounts of data (1–10 TB), though dropping it can break the moving parts inside.</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <span class="inline-block px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-[11px] font-bold uppercase mb-1">Secondary Storage</span>
+              <h4 class="font-bold text-navy-800 text-base">Solid State Drive (SSD)</h4>
+              <p class="text-sm text-slate-700 mt-1">Fast, lightweight storage that uses microchips instead of spinning disks (examples: <strong>USB flash drives</strong>, <strong>pen drives</strong>, and <strong>memory cards</strong>).</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <span class="inline-block px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-[11px] font-bold uppercase mb-1">Secondary Storage</span>
+              <h4 class="font-bold text-navy-800 text-base">Optical Discs</h4>
+              <p class="text-sm text-slate-700 mt-1">Flat plastic discs read and written using laser light beams (<strong>CDs</strong> for music, <strong>DVDs</strong> for standard movies, <strong>Blu-ray Discs&trade;</strong> for high-definition video).</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <span class="inline-block px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-[11px] font-bold uppercase mb-1">Network Storage</span>
+              <h4 class="font-bold text-navy-800 text-base">Network-Attached Storage (NAS)</h4>
+              <p class="text-sm text-slate-700 mt-1">Shared storage drives connected to a company's private network so workers in the same building can open the same files.</p>
+            </div>
+
+            <!-- Cloud-Based Storage Full Width Card -->
+            <div class="searchable-block md:col-span-2 rounded-xl border border-navy-200 bg-navy-50/70 p-5">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <h4 class="font-bold text-navy-900 text-base">Cloud-Based Storage</h4>
+                <span class="px-2.5 py-0.5 rounded bg-navy-800 text-white text-xs font-bold">Online Servers</span>
+              </div>
+              <p class="text-sm text-slate-700 mb-3">
+                Saving your files over the internet onto giant remote servers (such as <strong>Google Drive</strong> or <strong>Microsoft OneDrive</strong>).
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                <div class="bg-white rounded-lg p-3.5 border border-navy-200">
+                  <span class="inline-block px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-xs font-bold mb-1">Good Points</span>
+                  <p class="text-slate-700">You can open your files from any phone or computer with internet, and your work stays safe if your laptop breaks.</p>
+                </div>
+                <div class="bg-white rounded-lg p-3.5 border border-slate-200">
+                  <span class="inline-block px-2 py-0.5 rounded bg-slate-200 text-slate-800 text-xs font-bold mb-1">Bad Points</span>
+                  <p class="text-slate-700">You cannot reach your files without internet, and extra storage space often costs money.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         TOPIC 3: CYBER-SECURITY, COMPUTER CARE & ERGONOMICS (CHAPTER 4)
+    ======================================================== -->
+    <section id="topic-3" class="study-section bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="bg-navy-800 text-white px-6 py-5 flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-navy-200">Chapter 4 &bull; Cyber-Care &amp; Safety</span>
+          <h2 class="text-xl sm:text-2xl font-bold">Topic 3: Cyber-Security, Computer Care &amp; Ergonomics</h2>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-white">
+          Data Protection &amp; Desk Health
+        </span>
+      </div>
+
+      <div class="p-6 space-y-8">
+        <!-- Inside Threats vs Outside Threats Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          
+          <!-- Protecting Computers from Inside Threats -->
+          <div class="space-y-3">
+            <h3 class="text-lg font-bold text-navy-800 pb-2 border-b border-slate-200">Protecting Computers from Inside Threats <span class="text-xs font-normal text-slate-500">(Workplace &amp; School)</span></h3>
+            
+            <div class="searchable-block rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <h4 class="font-bold text-navy-800 text-sm sm:text-base">Strong Passwords &amp; PINs</h4>
+              <p class="text-sm text-slate-700 mt-1">Locking accounts and files so unauthorized people cannot open them.</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <h4 class="font-bold text-navy-800 text-sm sm:text-base">Biometric Access Readers</h4>
+              <p class="text-sm text-slate-700 mt-1">Checking physical body traits before letting someone enter a room or system:</p>
+              <ul class="mt-1.5 space-y-1 text-sm text-slate-700 pl-4 list-disc">
+                <li><strong>Unimodal:</strong> Checks <strong>one</strong> feature (like a fingerprint).</li>
+                <li><strong>Multimodal:</strong> Checks <strong>two or more</strong> features together (like a palm print + voice print).</li>
+              </ul>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <h4 class="font-bold text-navy-800 text-sm sm:text-base">Blocking USB Ports</h4>
+              <p class="text-sm text-slate-700 mt-1">Turning off unused USB ports so people cannot plug in random flash drives to steal files or spread viruses.</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <h4 class="font-bold text-navy-800 text-sm sm:text-base">Backup Power (UPS &amp; Generators)</h4>
+              <p class="text-sm text-slate-700 mt-1">Using battery backup boxes so computers do not shut off abruptly during a power outage.</p>
+            </div>
+          </div>
+
+          <!-- Protecting Computers from Outside Threats -->
+          <div class="space-y-3">
+            <h3 class="text-lg font-bold text-navy-800 pb-2 border-b border-slate-200">Protecting Computers from Outside Threats <span class="text-xs font-normal text-slate-500">(The Internet)</span></h3>
+
+            <div class="searchable-block rounded-xl border border-navy-200 bg-navy-50/60 p-4">
+              <span class="inline-block px-2 py-0.5 rounded bg-navy-800 text-white text-[11px] font-bold uppercase mb-1">Network Defense</span>
+              <h4 class="font-bold text-navy-800 text-sm sm:text-base">Firewall</h4>
+              <p class="text-sm text-slate-700 mt-1">A digital security guard (hardware or software) that checks internet traffic coming in and going out, blocking hackers from entering.</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-navy-200 bg-navy-50/60 p-4">
+              <span class="inline-block px-2 py-0.5 rounded bg-navy-800 text-white text-[11px] font-bold uppercase mb-1">Malware Defense</span>
+              <h4 class="font-bold text-navy-800 text-sm sm:text-base">Antivirus Software</h4>
+              <p class="text-sm text-slate-700 mt-1">Programs that scan your computer to catch, block, and delete computer viruses.</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-navy-200 bg-navy-50/60 p-4">
+              <span class="inline-block px-2 py-0.5 rounded bg-navy-800 text-white text-[11px] font-bold uppercase mb-1">System Maintenance</span>
+              <h4 class="font-bold text-navy-800 text-sm sm:text-base">Software Updates (Patches)</h4>
+              <p class="text-sm text-slate-700 mt-1">Installing updates regularly to close security holes.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Healthy Computer Habits (Ergonomics) -->
+        <div>
+          <div class="mb-3">
+            <h3 class="text-lg font-bold text-navy-800">Healthy Computer Habits (Ergonomics)</h3>
+            <p class="text-sm text-slate-600"><strong>Ergonomics</strong> means setting up your desk and equipment properly so your body stays comfortable and injury-free while working:</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
+              <div class="w-8 h-8 rounded-lg bg-navy-800 text-white font-bold text-sm flex items-center justify-center mb-3">1</div>
+              <h4 class="font-bold text-navy-800 text-base mb-1">Screen Height</h4>
+              <p class="text-sm text-slate-700">Place the top of your monitor at <strong>eye level</strong> so you do not strain your neck.</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
+              <div class="w-8 h-8 rounded-lg bg-navy-800 text-white font-bold text-sm flex items-center justify-center mb-3">2</div>
+              <h4 class="font-bold text-navy-800 text-base mb-1">Chair &amp; Posture</h4>
+              <p class="text-sm text-slate-700">Sit in an adjustable chair that supports your lower back, with your feet flat on the floor or on a <strong>footrest</strong>.</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
+              <div class="w-8 h-8 rounded-lg bg-navy-800 text-white font-bold text-sm flex items-center justify-center mb-3">3</div>
+              <h4 class="font-bold text-navy-800 text-base mb-1">Safe Cords</h4>
+              <p class="text-sm text-slate-700">Keep electrical cords tucked neatly along walls so nobody trips over them.</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border-2 border-navy-200 bg-navy-50 p-4">
+              <div class="w-8 h-8 rounded-lg bg-navy-600 text-white font-bold text-sm flex items-center justify-center mb-3">4</div>
+              <h4 class="font-bold text-navy-800 text-base mb-1">The 20-20-20 Eye Rule</h4>
+              <p class="text-sm text-slate-700">Every <strong>20 minutes</strong>, look away at something <strong>20 feet</strong> away for at least <strong>20 seconds</strong> to rest your eyes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         TOPIC 4: BUSINESS DOCUMENTS & SBA PORTFOLIO BASICS
+    ======================================================== -->
+    <section id="topic-4" class="study-section bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="bg-navy-800 text-white px-6 py-5 flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-navy-200">Practical Preparation &bull; CSEC SBA</span>
+          <h2 class="text-xl sm:text-2xl font-bold">Topic 4: Business Documents &amp; SBA Portfolio Basics</h2>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-white">
+          Layouts &amp; Portfolio Items
+        </span>
+      </div>
+
+      <div class="p-6 space-y-8">
+        <!-- Key Document Styles & Layouts -->
+        <div>
+          <h3 class="text-lg font-bold text-navy-800 mb-3">Key Document Styles &amp; Layouts</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <div class="searchable-block rounded-xl border-l-4 border-navy-800 bg-navy-50/70 p-4">
+              <h4 class="font-bold text-navy-900 text-base mb-1">Blocked-Style Business Letter</h4>
+              <p class="text-sm text-slate-700 leading-relaxed">
+                Every single line—including the date, inside address, paragraphs, and closing—starts flush against the <strong>left margin</strong> (no indents).
+              </p>
+            </div>
+
+            <div class="searchable-block rounded-xl border-l-4 border-navy-600 bg-navy-50/70 p-4">
+              <h4 class="font-bold text-navy-900 text-base mb-1">Open Punctuation</h4>
+              <p class="text-sm text-slate-700 leading-relaxed">
+                Leaving out commas at the end of the greeting (<code class="px-1.5 py-0.5 bg-white rounded border text-xs">Dear Mr Clarke</code>) and the sign-off (<code class="px-1.5 py-0.5 bg-white rounded border text-xs">Yours faithfully</code>).
+              </p>
+            </div>
+
+            <div class="searchable-block rounded-xl border-l-4 border-navy-800 bg-navy-50/70 p-4">
+              <h4 class="font-bold text-navy-900 text-base mb-1">Memorandum (Memo)</h4>
+              <p class="text-sm text-slate-700 leading-relaxed">
+                A short internal message sent between workers inside the same company using four standard headings: <strong>TO:</strong>, <strong>FROM:</strong>, <strong>DATE:</strong>, and <strong>SUBJECT:</strong>.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Official CSEC EDPM SBA Portfolio Documents to Know -->
+        <div>
+          <h3 class="text-lg font-bold text-navy-800 mb-3">Official CSEC EDPM SBA Portfolio Documents to Know</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            
+            <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 hover:border-navy-300 transition">
+              <span class="inline-block px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-[11px] font-bold uppercase mb-1">SBA Item 1</span>
+              <h4 class="font-bold text-navy-800 text-base">Circular Letter with Tear-Off Slip</h4>
+              <p class="text-sm text-slate-700 mt-1">One standard letter sent out to many customers, with a small return section at the bottom they can fill out and send back.</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 hover:border-navy-300 transition">
+              <span class="inline-block px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-[11px] font-bold uppercase mb-1">SBA Item 2</span>
+              <h4 class="font-bold text-navy-800 text-base">Notice of Meeting &amp; Agenda</h4>
+              <p class="text-sm text-slate-700 mt-1">An announcement telling members <em>when</em> and <em>where</em> a meeting will happen, paired with a numbered list of topics to be discussed.</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 hover:border-navy-300 transition">
+              <span class="inline-block px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-[11px] font-bold uppercase mb-1">SBA Item 3</span>
+              <h4 class="font-bold text-navy-800 text-base">Minutes of a Meeting</h4>
+              <p class="text-sm text-slate-700 mt-1">The official written record of what was discussed and decided during a meeting.</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 hover:border-navy-300 transition">
+              <span class="inline-block px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-[11px] font-bold uppercase mb-1">SBA Item 4</span>
+              <h4 class="font-bold text-navy-800 text-base">Tabular Work</h4>
+              <p class="text-sm text-slate-700 mt-1">Neat rows and columns used for price lists, invoices, or financial statements (using spreadsheet formulas like <code class="px-1.5 py-0.5 bg-slate-100 rounded border text-xs">=SUM()</code> to add totals).</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 hover:border-navy-300 transition">
+              <span class="inline-block px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-[11px] font-bold uppercase mb-1">SBA Item 5</span>
+              <h4 class="font-bold text-navy-800 text-base">Display Work</h4>
+              <p class="text-sm text-slate-700 mt-1">Creative, eye-catching documents such as invitations, restaurant menus, or event programmes.</p>
+            </div>
+
+            <div class="searchable-block rounded-xl border border-slate-200 bg-white p-4 hover:border-navy-300 transition">
+              <span class="inline-block px-2 py-0.5 rounded bg-navy-100 text-navy-800 text-[11px] font-bold uppercase mb-1">SBA Item 6</span>
+              <h4 class="font-bold text-navy-800 text-base">Legal Documents</h4>
+              <p class="text-sm text-slate-700 mt-1">Formal binding agreements such as a <strong>Contract of Employment</strong> or a <strong>Lease Agreement</strong>.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         QUICK PRE-EXAM STUDY CHECKLIST (12 ITEMS)
+    ======================================================== -->
+    <section id="checklist" class="study-section bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="bg-navy-800 text-white px-6 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-navy-200">Self-Assessment &bull; 12 Key Questions</span>
+          <h2 class="text-xl sm:text-2xl font-bold">Quick Pre-Exam Study Checklist</h2>
+          <p class="text-xs sm:text-sm text-navy-200 mt-0.5">Click each box as you master the topic without looking at your notes!</p>
+        </div>
+
+        <!-- Live Progress Counter -->
+        <div class="bg-navy-900 border border-navy-600 rounded-xl px-4 py-3 min-w-[220px]">
+          <div class="flex items-center justify-between text-xs font-bold mb-1.5">
+            <span class="text-navy-200">Exam Readiness</span>
+            <span id="progress-label" class="text-white text-sm">0 / 12 (0%)</span>
+          </div>
+          <div class="w-full h-2.5 bg-navy-700 rounded-full overflow-hidden">
+            <div id="progress-bar" class="h-full bg-white rounded-full transition-all duration-300" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-6">
+        <div id="checklist-items" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          
+          <!-- Item 1 -->
+          <label class="searchable-block flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:border-navy-400 hover:bg-navy-50/40 cursor-pointer transition select-none">
+            <input type="checkbox" class="exam-checkbox mt-1 w-5 h-5 rounded text-navy-800 border-slate-300 focus:ring-navy-600 cursor-pointer" />
+            <span class="text-sm text-slate-800 leading-snug">
+              <strong>1.</strong> Can I name <strong>3 manual input devices</strong> (Keyboard &amp; Mouse, Touchscreen, Microphone) and <strong>4 automated data-entry scanners</strong>?
+            </span>
+          </label>
+
+          <!-- Item 2 -->
+          <label class="searchable-block flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:border-navy-400 hover:bg-navy-50/40 cursor-pointer transition select-none">
+            <input type="checkbox" class="exam-checkbox mt-1 w-5 h-5 rounded text-navy-800 border-slate-300 focus:ring-navy-600 cursor-pointer" />
+            <span class="text-sm text-slate-800 leading-snug">
+              <strong>2.</strong> Can I explain what <strong>OMR</strong> (CXC Paper 1), <strong>OCR</strong> (editable text), and <strong>MICR</strong> (bank cheques) are used for?
+            </span>
+          </label>
+
+          <!-- Item 3 -->
+          <label class="searchable-block flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:border-navy-400 hover:bg-navy-50/40 cursor-pointer transition select-none">
+            <input type="checkbox" class="exam-checkbox mt-1 w-5 h-5 rounded text-navy-800 border-slate-300 focus:ring-navy-600 cursor-pointer" />
+            <span class="text-sm text-slate-800 leading-snug">
+              <strong>3.</strong> Can I explain the difference between <strong>Speech-to-Text</strong> (what is said) and <strong>Voice-to-Text</strong> (who is speaking) in one sentence?
+            </span>
+          </label>
+
+          <!-- Item 4 -->
+          <label class="searchable-block flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:border-navy-400 hover:bg-navy-50/40 cursor-pointer transition select-none">
+            <input type="checkbox" class="exam-checkbox mt-1 w-5 h-5 rounded text-navy-800 border-slate-300 focus:ring-navy-600 cursor-pointer" />
+            <span class="text-sm text-slate-800 leading-snug">
+              <strong>4.</strong> Can I convert <strong>Terabytes (TB)</strong> into <strong>Gigabytes (GB)</strong> using the rule <code class="px-1.5 py-0.5 bg-slate-100 rounded border text-xs">1 TB = 1,024 GB</code>?
+            </span>
+          </label>
+
+          <!-- Item 5 -->
+          <label class="searchable-block flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:border-navy-400 hover:bg-navy-50/40 cursor-pointer transition select-none">
+            <input type="checkbox" class="exam-checkbox mt-1 w-5 h-5 rounded text-navy-800 border-slate-300 focus:ring-navy-600 cursor-pointer" />
+            <span class="text-sm text-slate-800 leading-snug">
+              <strong>5.</strong> Can I tell the difference between <strong>Internal vs. External</strong> and <strong>Primary vs. Secondary</strong> storage?
+            </span>
+          </label>
+
+          <!-- Item 6 -->
+          <label class="searchable-block flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:border-navy-400 hover:bg-navy-50/40 cursor-pointer transition select-none">
+            <input type="checkbox" class="exam-checkbox mt-1 w-5 h-5 rounded text-navy-800 border-slate-300 focus:ring-navy-600 cursor-pointer" />
+            <span class="text-sm text-slate-800 leading-snug">
+              <strong>6.</strong> Can I tell the difference between <strong>RAM</strong> (temporary/volatile) and <strong>ROM</strong> (permanent/non-volatile)?
+            </span>
+          </label>
+
+          <!-- Item 7 -->
+          <label class="searchable-block flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:border-navy-400 hover:bg-navy-50/40 cursor-pointer transition select-none">
+            <input type="checkbox" class="exam-checkbox mt-1 w-5 h-5 rounded text-navy-800 border-slate-300 focus:ring-navy-600 cursor-pointer" />
+            <span class="text-sm text-slate-800 leading-snug">
+              <strong>7.</strong> Do I know how <strong>SSDs</strong> (microchips) differ from <strong>Hard Drives</strong> (spinning platters) and <strong>Optical Discs</strong> (lasers)?
+            </span>
+          </label>
+
+          <!-- Item 8 -->
+          <label class="searchable-block flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:border-navy-400 hover:bg-navy-50/40 cursor-pointer transition select-none">
+            <input type="checkbox" class="exam-checkbox mt-1 w-5 h-5 rounded text-navy-800 border-slate-300 focus:ring-navy-600 cursor-pointer" />
+            <span class="text-sm text-slate-800 leading-snug">
+              <strong>8.</strong> Can I give <strong>2 good points</strong> and <strong>2 bad points</strong> of using <strong>Cloud-Based Storage</strong> (like Google Drive or OneDrive)?
+            </span>
+          </label>
+
+          <!-- Item 9 -->
+          <label class="searchable-block flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:border-navy-400 hover:bg-navy-50/40 cursor-pointer transition select-none">
+            <input type="checkbox" class="exam-checkbox mt-1 w-5 h-5 rounded text-navy-800 border-slate-300 focus:ring-navy-600 cursor-pointer" />
+            <span class="text-sm text-slate-800 leading-snug">
+              <strong>9.</strong> Can I explain the difference between <strong>Unimodal</strong> (1 trait) and <strong>Multimodal</strong> (2+ traits) biometrics and what a <strong>UPS</strong> does?
+            </span>
+          </label>
+
+          <!-- Item 10 -->
+          <label class="searchable-block flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:border-navy-400 hover:bg-navy-50/40 cursor-pointer transition select-none">
+            <input type="checkbox" class="exam-checkbox mt-1 w-5 h-5 rounded text-navy-800 border-slate-300 focus:ring-navy-600 cursor-pointer" />
+            <span class="text-sm text-slate-800 leading-snug">
+              <strong>10.</strong> Can I list <strong>2 ways to protect a computer from hackers</strong> (Firewall, Antivirus) and <strong>3 ways to protect my body using ergonomics</strong>?
+            </span>
+          </label>
+
+          <!-- Item 11 -->
+          <label class="searchable-block flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:border-navy-400 hover:bg-navy-50/40 cursor-pointer transition select-none">
+            <input type="checkbox" class="exam-checkbox mt-1 w-5 h-5 rounded text-navy-800 border-slate-300 focus:ring-navy-600 cursor-pointer" />
+            <span class="text-sm text-slate-800 leading-snug">
+              <strong>11.</strong> Do I know what <strong>Blocked Style</strong> and <strong>Open Punctuation</strong> look like in a business letter, plus the 4 headings on a <strong>Memo</strong>?
+            </span>
+          </label>
+
+          <!-- Item 12 -->
+          <label class="searchable-block flex items-start gap-3 p-4 rounded-xl border border-slate-200 hover:border-navy-400 hover:bg-navy-50/40 cursor-pointer transition select-none">
+            <input type="checkbox" class="exam-checkbox mt-1 w-5 h-5 rounded text-navy-800 border-slate-300 focus:ring-navy-600 cursor-pointer" />
+            <span class="text-sm text-slate-800 leading-snug">
+              <strong>12.</strong> Can I describe the official <strong>CSEC SBA documents</strong> (Circular Letter, Notice &amp; Agenda, Minutes, Tabular, Display, and Legal)?
+            </span>
+          </label>
+
+        </div>
+
+        <!-- Celebration Banner when 100% checked -->
+        <div id="congrats-banner" class="hidden mt-5 p-4 rounded-xl bg-navy-800 text-white flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-full bg-white text-navy-800 font-extrabold flex items-center justify-center shrink-0">&#10003;</span>
+            <div>
+              <p class="font-bold text-sm sm:text-base">100% Ready for Your Term 1 EDPM Exam!</p>
+              <p class="text-xs sm:text-sm text-navy-200">You have reviewed all 12 self-check items across Chapters 2, 4, and SBA documents.</p>
+            </div>
+          </div>
+          <button type="button" id="reset-checklist-btn" class="px-3.5 py-1.5 rounded-lg bg-white text-navy-800 text-xs font-bold hover:bg-navy-100 transition shrink-0">
+            Reset All
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+  <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs sm:text-sm text-slate-500">
+    <div class="max-w-6xl mx-auto px-4">
+      <p class="font-semibold text-navy-800">EDPM End-of-Term Study Guide (Term 1) &bull; Grade 9 / 10 Combined</p>
+      <p class="mt-1">Aligned with <em>Electronic Document Preparation &amp; Management for CSEC Examinations</em> (Holdip &amp; Holdip Julien)</p>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       INTERACTIVE JAVASCRIPT
+  ========================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      /* -------------------------------------------------------
+         1. MOBILE NAVIGATION TOGGLE
+      -------------------------------------------------------- */
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const navCollapsible = document.getElementById('nav-collapsible');
+      const iconOpen = document.getElementById('menu-icon-open');
+      const iconClose = document.getElementById('menu-icon-close');
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      mobileMenuBtn.addEventListener('click', () => {
+        const isHidden = navCollapsible.classList.contains('hidden');
+        navCollapsible.classList.toggle('hidden', !isHidden);
+        navCollapsible.classList.toggle('flex', isHidden);
+        iconOpen.classList.toggle('hidden', isHidden);
+        iconClose.classList.toggle('hidden', !isHidden);
+      });
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth < 1024) {
+            navCollapsible.classList.add('hidden');
+            navCollapsible.classList.remove('flex');
+            iconOpen.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+          }
+        });
+      });
+
+      /* -------------------------------------------------------
+         2. INTERACTIVE TB -> GB CALCULATOR
+      -------------------------------------------------------- */
+      const tbInput = document.getElementById('tb-input');
+      const gbOutput = document.getElementById('gb-output');
+
+      function updateStorageConversion() {
+        const tbVal = parseFloat(tbInput.value);
+        if (isNaN(tbVal) || tbVal < 0) {
+          gbOutput.textContent = '0 GB';
+          return;
+        }
+        const gbVal = tbVal * 1024;
+        gbOutput.textContent = gbVal.toLocaleString() + ' GB';
+      }
+
+      tbInput.addEventListener('input', updateStorageConversion);
+
+      /* -------------------------------------------------------
+         3. INTERACTIVE EXAM READINESS CHECKLIST (12 ITEMS)
+      -------------------------------------------------------- */
+      const progressBar = document.getElementById('progress-bar');
+      const progressLabel = document.getElementById('progress-label');
+      const congratsBanner = document.getElementById('congrats-banner');
+      const resetChecklistBtn = document.getElementById('reset-checklist-btn');
+      const STORAGE_KEY = 'edpm_term1_checklist_v2_navy';
+
+      function getSavedChecklistState() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveChecklistState(stateArray) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(stateArray));
+        } catch (e) {
+          // Ignore storage restrictions in sandboxed environments
+        }
+      }
+
+      function bindAndSyncCheckboxes(restoreFromStorage = false) {
+        const currentCheckboxes = document.querySelectorAll('.exam-checkbox');
+        const savedState = restoreFromStorage ? getSavedChecklistState() : null;
+        const total = currentCheckboxes.length;
+        let checkedCount = 0;
+        const stateArray = [];
+
+        currentCheckboxes.forEach((cb, idx) => {
+          if (restoreFromStorage && savedState[idx]) {
+            cb.checked = true;
+          }
+
+          const card = cb.closest('label');
+          if (cb.checked) {
+            checkedCount++;
+            stateArray.push(true);
+            card.classList.add('bg-navy-50', 'border-navy-400');
+          } else {
+            stateArray.push(false);
+            card.classList.remove('bg-navy-50', 'border-navy-400');
+          }
+
+          cb.onchange = () => bindAndSyncCheckboxes(false);
+        });
+
+        const percent = total > 0 ? Math.round((checkedCount / total) * 100) : 0;
+        progressBar.style.width = percent + '%';
+        progressLabel.textContent = `${checkedCount} / ${total} (${percent}%)`;
+
+        if (percent === 100) {
+          congratsBanner.classList.remove('hidden');
+        } else {
+          congratsBanner.classList.add('hidden');
+        }
+
+        if (!restoreFromStorage) {
+          saveChecklistState(stateArray);
+        }
+      }
+
+      resetChecklistBtn.addEventListener('click', () => {
+        document.querySelectorAll('.exam-checkbox').forEach(cb => (cb.checked = false));
+        bindAndSyncCheckboxes(false);
+      });
+
+      // Initialize checklist on page load
+      bindAndSyncCheckboxes(true);
+
+      /* -------------------------------------------------------
+         4. REAL-TIME TOPIC SEARCH & HIGHLIGHTING
+      -------------------------------------------------------- */
+      const searchInput = document.getElementById('study-search');
+      const clearSearchBtn = document.getElementById('clear-search-btn');
+      const searchStatusBar = document.getElementById('search-status-bar');
+      const searchStatusText = document.getElementById('search-status-text');
+      const resetSearchLink = document.getElementById('reset-search-link');
+      const emptyResetBtn = document.getElementById('empty-reset-btn');
+      const noResultsBox = document.getElementById('no-results-box');
+
+      const sections = document.querySelectorAll('.study-section');
+      const searchableItems = document.querySelectorAll('.searchable-block');
+
+      // Cache clean HTML for each searchable card/block
+      searchableItems.forEach(item => {
+        item.dataset.originalHtml = item.innerHTML;
+      });
+
+      function escapeRegExp(str) {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      }
+
+      function highlightTextNodes(element, regex) {
+        const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+        const textNodes = [];
+        let node;
+        while ((node = walker.nextNode())) {
+          if (node.nodeValue.trim().length > 0 && !node.parentElement.closest('input, button')) {
+            textNodes.push(node);
+          }
+        }
+
+        textNodes.forEach(textNode => {
+          const text = textNode.nodeValue;
+          if (regex.test(text)) {
+            const span = document.createElement('span');
+            span.innerHTML = text.replace(regex, match => `<mark class="search-highlight">${match}</mark>`);
+            textNode.parentNode.replaceChild(span, textNode);
+          }
+        });
+      }
+
+      function filterStudyGuide() {
+        const rawQuery = searchInput.value.trim();
+        const query = rawQuery.toLowerCase();
+
+        clearSearchBtn.classList.toggle('hidden', rawQuery.length === 0);
+
+        // Restore original clean HTML
+        searchableItems.forEach(item => {
+          item.innerHTML = item.dataset.originalHtml;
+          item.classList.remove('hidden');
+        });
+
+        // Re-apply saved checkbox states after DOM restoration
+        bindAndSyncCheckboxes(true);
+
+        if (query === '') {
+          sections.forEach(sec => sec.classList.remove('hidden'));
+          searchStatusBar.classList.add('hidden');
+          noResultsBox.classList.add('hidden');
+          return;
+        }
+
+        const regex = new RegExp(`(${escapeRegExp(rawQuery)})`, 'gi');
+        let totalMatches = 0;
+
+        sections.forEach(section => {
+          const itemsInSection = section.querySelectorAll('.searchable-block');
+          let sectionMatchCount = 0;
+
+          itemsInSection.forEach(item => {
+            const textContent = item.textContent.toLowerCase();
+            if (textContent.includes(query)) {
+              item.classList.remove('hidden');
+              highlightTextNodes(item, regex);
+              sectionMatchCount++;
+              totalMatches++;
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+
+          if (sectionMatchCount === 0) {
+            section.classList.add('hidden');
+          } else {
+            section.classList.remove('hidden');
+          }
+        });
+
+        searchStatusBar.classList.remove('hidden');
+        if (totalMatches === 0) {
+          searchStatusText.textContent = `No matches found for "${rawQuery}".`;
+          noResultsBox.classList.remove('hidden');
+        } else {
+          searchStatusText.textContent = `Showing ${totalMatches} matching card${totalMatches === 1 ? '' : 's'} for "${rawQuery}"`;
+          noResultsBox.classList.add('hidden');
+        }
+      }
+
+      function resetSearch() {
+        searchInput.value = '';
+        filterStudyGuide();
+        searchInput.focus();
+      }
+
+      searchInput.addEventListener('input', filterStudyGuide);
+      clearSearchBtn.addEventListener('click', resetSearch);
+      resetSearchLink.addEventListener('click', resetSearch);
+      emptyResetBtn.addEventListener('click', resetSearch);
+    });
+  </script>
+</body>
+</html>

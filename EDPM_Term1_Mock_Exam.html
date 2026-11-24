@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EDPM Term 1 Mock Exam | Grade 9 &amp; 10 CSEC</title>
+  <!-- Load Tailwind CSS (with offline fallback styling below so lab PCs without internet still look crisp) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    if (window.tailwind) {
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            },
+            colors: {
+              navy: {
+                50: '#f0f5fa',
+                100: '#dce7f3',
+                200: '#b9cfe8',
+                300: '#8ab0d8',
+                500: '#2b579a',
+                600: '#1e3a8a',
+                700: '#172e6e',
+                800: '#0f294a',
+                900: '#0a1c33',
+              }
+            }
+          }
+        }
+      };
+    }
+  </script>
+
+  <style>
+    /* Self-contained system typography & offline fallback styles */
+    :root {
+      --navy-800: #0f294a;
+      --navy-600: #1e3a8a;
+      --navy-50: #f0f5fa;
+      --slate-200: #e2e8f0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f8fafc;
+      color: #0f294a;
+      margin: 0;
+    }
+
+    /* Custom radio option card styling */
+    .option-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 0.75rem;
+      background-color: #ffffff;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .option-label:hover {
+      border-color: #8ab0d8;
+      background-color: #f0f5fa;
+    }
+
+    .option-label input[type="radio"] {
+      margin-top: 0.2rem;
+      accent-color: #0f294a;
+      width: 1.1rem;
+      height: 1.1rem;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .option-label:has(input[type="radio"]:checked) {
+      border-color: #1e3a8a;
+      background-color: #f0f5fa;
+      box-shadow: 0 0 0 1px #1e3a8a;
+    }
+
+    /* Grading feedback states */
+    .question-card.graded-correct {
+      border-color: #16a34a !important;
+      background-color: #f0fdf4 !important;
+    }
+
+    .question-card.graded-incorrect {
+      border-color: #dc2626 !important;
+      background-color: #fef2f2 !important;
+    }
+
+    .option-label.correct-choice {
+      border-color: #16a34a !important;
+      background-color: #dcfce7 !important;
+      font-weight: 600;
+    }
+
+    .option-label.wrong-choice {
+      border-color: #dc2626 !important;
+      background-color: #fee2e2 !important;
+    }
+
+    select.match-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230f294a'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 1rem;
+      padding-right: 2.5rem;
+    }
+
+    /* Print styling */
+    @media print {
+      header, .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+      }
+      .question-card, section {
+        break-inside: avoid;
+        box-shadow: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-navy-100 selection:text-navy-900">
+
+  <!-- =========================================================
+       STICKY TOP NAVIGATION BAR (NAVY BLUE & WHITE)
+  ========================================================== -->
+  <header class="sticky top-0 z-50 bg-[#0f294a] text-white shadow-md border-b border-[#172e6e]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        
+        <!-- Title & Back Link -->
+        <div class="flex items-center gap-3">
+          <a
+            href="EDPM_Term1_Study_Guide.html"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white text-[#0f294a] hover:bg-[#f0f5fa] font-bold text-xs sm:text-sm shadow-sm transition"
+          >
+            &larr; Back to Study Guide
+          </a>
+          <div>
+            <h1 class="text-base sm:text-lg font-extrabold tracking-tight leading-tight text-white">
+              EDPM Term 1 Mock Exam
+            </h1>
+            <p class="text-[11px] sm:text-xs text-[#b9cfe8] font-medium">
+              Grade 9 &amp; 10 Combined &bull; 30 Marks Total
+            </p>
+          </div>
+        </div>
+
+        <!-- Timer & Print Controls -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Optional 45-Minute Exam Timer -->
+          <div class="flex items-center gap-2 bg-[#0a1c33] border border-[#2b579a] rounded-xl px-3 py-1.5">
+            <span class="text-[11px] uppercase tracking-wider text-[#8ab0d8] font-bold hidden sm:inline">Timer:</span>
+            <span id="timer-display" class="font-mono text-sm font-extrabold text-white tracking-wider">45:00</span>
+            <button
+              id="timer-toggle-btn"
+              type="button"
+              class="px-2 py-0.5 rounded-md bg-[#1e3a8a] hover:bg-[#2b579a] text-white text-xs font-semibold transition"
+            >
+              Start
+            </button>
+            <button
+              id="timer-reset-btn"
+              type="button"
+              title="Reset 45:00 Timer"
+              class="px-1.5 py-0.5 rounded-md text-[#b9cfe8] hover:text-white text-xs font-semibold transition"
+            >
+              Reset
+            </button>
+          </div>
+
+          <!-- Print / Save PDF Button -->
+          <button
+            type="button"
+            onclick="window.print()"
+            class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#1e3a8a] hover:bg-[#2b579a] border border-[#2b579a] text-white font-semibold text-xs sm:text-sm transition"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            <span class="hidden sm:inline">Print / Save PDF</span>
+            <span class="sm:hidden">Print</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       MAIN EXAM PAPER CONTAINER
+  ========================================================== -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-8">
+
+    <!-- Score Summary Banner (Revealed after grading) -->
+    <div id="score-banner" class="hidden rounded-2xl bg-[#0f294a] text-white p-6 sm:p-8 shadow-lg border-2 border-[#1e3a8a]">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div class="space-y-2">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-3 py-1 rounded-full bg-white text-[#0f294a] text-xs font-extrabold uppercase tracking-wider">
+              Exam Graded
+            </span>
+            <span id="grade-tier-badge" class="px-3 py-1 rounded-full bg-[#1e3a8a] border border-white/30 text-white text-xs font-bold">
+              Tier: —
+            </span>
+          </div>
+          <h2 id="score-headline" class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+            Your Score: 0 / 30 (0%)
+          </h2>
+          <p id="score-subtext" class="text-sm sm:text-base text-[#dce7f3] max-w-2xl leading-relaxed">
+            Review the highlighted feedback below each question to see which Study Guide topics to revisit.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row md:flex-col gap-2.5 shrink-0 no-print">
+          <a
+            href="EDPM_Term1_Study_Guide.html"
+            class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white hover:bg-[#f0f5fa] text-[#0f294a] font-extrabold text-sm shadow transition"
+          >
+            Review Study Guide &rarr;
+          </a>
+          <button
+            type="button"
+            onclick="window.print()"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#1e3a8a] hover:bg-[#2b579a] text-white border border-white/20 font-semibold text-sm transition"
+          >
+            Print Graded Result
+          </button>
+        </div>
+      </div>
+
+      <!-- Topic Breakdown Mini-Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-5 border-t border-white/15 text-xs sm:text-sm">
+        <div class="bg-[#0a1c33] rounded-xl p-3 border border-white/10">
+          <span class="block text-[#8ab0d8] font-semibold">Topic 1: Input Devices</span>
+          <span id="breakdown-t1" class="text-lg font-extrabold text-white">0 / 7</span>
+        </div>
+        <div class="bg-[#0a1c33] rounded-xl p-3 border border-white/10">
+          <span class="block text-[#8ab0d8] font-semibold">Topic 2: Storage &amp; Memory</span>
+          <span id="breakdown-t2" class="text-lg font-extrabold text-white">0 / 13</span>
+        </div>
+        <div class="bg-[#0a1c33] rounded-xl p-3 border border-white/10">
+          <span class="block text-[#8ab0d8] font-semibold">Topic 3: Security &amp; Care</span>
+          <span id="breakdown-t3" class="text-lg font-extrabold text-white">0 / 4</span>
+        </div>
+        <div class="bg-[#0a1c33] rounded-xl p-3 border border-white/10">
+          <span class="block text-[#8ab0d8] font-semibold">Topic 4: Docs &amp; SBA</span>
+          <span id="breakdown-t4" class="text-lg font-extrabold text-white">0 / 6</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exam Cover Header & Candidate Info -->
+    <section class="bg-white rounded-2xl border border-[#e2e8f0] shadow-sm p-6 sm:p-8">
+      <div class="border-b border-[#e2e8f0] pb-5 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-[#f0f5fa] text-[#1e3a8a] border border-[#b9cfe8] text-xs font-bold uppercase tracking-wide mb-2">
+            CSEC Electronic Document Preparation &amp; Management (EDPM)
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-[#0f294a]">
+            End-of-Term 1 Practice Mock Examination
+          </h2>
+          <p class="text-sm text-slate-600 mt-1">
+            Covers Chapters 2 &amp; 4 (Input Devices, Storage &amp; Memory, Cyber-Security &amp; Ergonomics) and SBA Business Documents.
+          </p>
+        </div>
+        <div class="bg-[#f0f5fa] border border-[#b9cfe8] rounded-xl px-4 py-3 text-center shrink-0">
+          <span class="block text-xs font-bold uppercase text-[#1e3a8a]">Total Marks</span>
+          <span class="text-2xl font-extrabold text-[#0f294a]">30 Marks</span>
+        </div>
+      </div>
+
+      <!-- Student Name, Grade & Date Inputs -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <label for="student-name" class="block text-xs font-bold uppercase tracking-wide text-[#0f294a] mb-1.5">
+            Student Full Name
+          </label>
+          <input
+            id="student-name"
+            type="text"
+            placeholder="Enter your full name..."
+            class="w-full px-3.5 py-2.5 text-sm font-medium text-[#0f294a] bg-[#f8fafc] border border-[#cbd5e1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:bg-white transition"
+          />
+        </div>
+        <div>
+          <label for="student-grade" class="block text-xs font-bold uppercase tracking-wide text-[#0f294a] mb-1.5">
+            Grade / Form
+          </label>
+          <select
+            id="student-grade"
+            class="w-full px-3.5 py-2.5 text-sm font-medium text-[#0f294a] bg-[#f8fafc] border border-[#cbd5e1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:bg-white transition"
+          >
+            <option value="Grade 9">Grade 9</option>
+            <option value="Grade 10">Grade 10</option>
+            <option value="Grade 9 / 10 Combined" selected>Grade 9 / 10 Combined</option>
+          </select>
+        </div>
+        <div>
+          <label for="exam-date" class="block text-xs font-bold uppercase tracking-wide text-[#0f294a] mb-1.5">
+            Date
+          </label>
+          <input
+            id="exam-date"
+            type="date"
+            class="w-full px-3.5 py-2.5 text-sm font-medium text-[#0f294a] bg-[#f8fafc] border border-[#cbd5e1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:bg-white transition"
+          />
+        </div>
+      </div>
+
+      <!-- Instructions Box -->
+      <div class="mt-5 p-4 rounded-xl bg-[#f0f5fa] border-l-4 border-[#1e3a8a] text-xs sm:text-sm text-[#0f294a]">
+        <strong>Instructions:</strong> Answer all <strong>20 Multiple-Choice questions</strong> in Section A and all <strong>10 Matching questions</strong> in Section B. When finished, click <strong>"Submit &amp; Grade Mock Exam"</strong> at the bottom of the page to see your score and instant study explanations.
+      </div>
+    </section>
+
+    <!-- =======================================================
+         EXAM FORM
+    ======================================================== -->
+    <form id="mock-exam-form" class="space-y-8" novalidate>
+
+      <!-- =====================================================
+           SECTION A: MULTIPLE CHOICE (20 QUESTIONS = 20 MARKS)
+      ====================================================== -->
+      <section class="bg-white rounded-2xl border border-[#e2e8f0] shadow-sm overflow-hidden">
+        <div class="bg-[#0f294a] text-white px-6 py-4 flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-[#b9cfe8]">Section A &bull; 1 Mark Each</span>
+            <h3 class="text-lg sm:text-xl font-bold">Multiple-Choice Questions (20 Marks)</h3>
+          </div>
+          <span id="section-a-progress" class="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-semibold">
+            0 / 20 Answered
+          </span>
+        </div>
+
+        <div id="mcq-container" class="p-6 space-y-6">
+          <!-- Questions 1–20 are dynamically rendered from structured exam data below -->
+        </div>
+      </section>
+
+      <!-- =====================================================
+           SECTION B: QUICK MATCHING / CLASSIFICATION (10 MARKS)
+      ====================================================== -->
+      <section class="bg-white rounded-2xl border border-[#e2e8f0] shadow-sm overflow-hidden">
+        <div class="bg-[#0f294a] text-white px-6 py-4 flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-[#b9cfe8]">Section B &bull; 1 Mark Each</span>
+            <h3 class="text-lg sm:text-xl font-bold">Quick Matching &amp; Classification Check (10 Marks)</h3>
+          </div>
+          <span id="section-b-progress" class="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-semibold">
+            0 / 10 Matched
+          </span>
+        </div>
+
+        <div class="p-6 space-y-8">
+          <!-- Part B1: Storage & Memory Classification (Items 21–25) -->
+          <div>
+            <div class="mb-4 pb-2 border-b border-[#e2e8f0]">
+              <h4 class="text-base sm:text-lg font-bold text-[#0f294a]">
+                Part 1: Storage &amp; Memory Classification (Questions 21–25)
+              </h4>
+              <p class="text-xs sm:text-sm text-slate-600">
+                Select the correct storage classification for each device or memory type from the dropdown menu.
+              </p>
+            </div>
+            <div id="matching-storage-container" class="space-y-3"></div>
+          </div>
+
+          <!-- Part B2: CSEC EDPM SBA Document Types (Items 26–30) -->
+          <div>
+            <div class="mb-4 pb-2 border-b border-[#e2e8f0]">
+              <h4 class="text-base sm:text-lg font-bold text-[#0f294a]">
+                Part 2: CSEC EDPM SBA Document Types (Questions 26–30)
+              </h4>
+              <p class="text-xs sm:text-sm text-slate-600">
+                Match each official CSEC EDPM SBA document type to its correct workplace purpose.
+              </p>
+            </div>
+            <div id="matching-sba-container" class="space-y-3"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Validation Alert Message Box (Replaces browser alert()) -->
+      <div id="validation-banner" class="hidden rounded-xl bg-amber-50 border-l-4 border-amber-500 p-4 text-amber-900 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 no-print">
+        <div class="text-sm">
+          <strong>Heads up!</strong> <span id="validation-text">You still have unanswered questions.</span>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <button
+            id="grade-anyway-btn"
+            type="button"
+            class="px-3.5 py-1.5 rounded-lg bg-[#0f294a] text-white text-xs font-bold hover:bg-[#1e3a8a] transition"
+          >
+            Grade Exam Anyway
+          </button>
+          <button
+            id="dismiss-validation-btn"
+            type="button"
+            class="px-3 py-1.5 rounded-lg bg-white border border-amber-300 text-amber-900 text-xs font-semibold hover:bg-amber-100 transition"
+          >
+            Keep Answering
+          </button>
+        </div>
+      </div>
+
+      <!-- =====================================================
+           BOTTOM SUBMIT & RESET ACTION BAR
+      ====================================================== -->
+      <div class="bg-white rounded-2xl border border-[#e2e8f0] shadow-sm p-6 flex flex-col sm:flex-row items-center justify-between gap-4 no-print">
+        <div class="text-center sm:text-left">
+          <p class="text-sm font-bold text-[#0f294a]">Ready to check your score?</p>
+          <p class="text-xs text-slate-600">Instant grading out of 30 marks with plain-language study explanations.</p>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 w-full sm:w-auto">
+          <button
+            id="reset-exam-btn"
+            type="button"
+            class="px-5 py-3 rounded-xl bg-white hover:bg-slate-100 text-[#0f294a] border border-[#cbd5e1] font-bold text-sm transition"
+          >
+            Reset Exam
+          </button>
+          <button
+            id="submit-exam-btn"
+            type="submit"
+            class="px-6 py-3 rounded-xl bg-[#0f294a] hover:bg-[#1e3a8a] text-white font-extrabold text-sm shadow-md transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1e3a8a]"
+          >
+            Submit &amp; Grade Mock Exam
+          </button>
+        </div>
+      </div>
+
+    </form>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+  <footer class="bg-white border-t border-[#e2e8f0] mt-12 py-6 text-center text-xs sm:text-sm text-slate-500">
+    <div class="max-w-5xl mx-auto px-4">
+      <p class="font-semibold text-[#0f294a]">EDPM End-of-Term 1 Mock Examination &bull; Grade 9 / 10 Combined</p>
+      <p class="mt-1">
+        Companion assessment to <a href="EDPM_Term1_Study_Guide.html" class="text-[#1e3a8a] font-semibold underline hover:text-[#0f294a]">EDPM_Term1_Study_Guide.html</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       EXAM DATA & INTERACTIVE GRADING LOGIC
+  ========================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Auto-populate today's date in the exam header
+      const dateInput = document.getElementById('exam-date');
+      if (dateInput && !dateInput.value) {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        dateInput.value = `${yyyy}-${mm}-${dd}`;
+      }
+
+      /* -------------------------------------------------------
+         1. OPTIONAL 45-MINUTE COUNTDOWN TIMER
+      -------------------------------------------------------- */
+      const timerDisplay = document.getElementById('timer-display');
+      const timerToggleBtn = document.getElementById('timer-toggle-btn');
+      const timerResetBtn = document.getElementById('timer-reset-btn');
+      const INITIAL_SECONDS = 45 * 60;
+      let remainingSeconds = INITIAL_SECONDS;
+      let timerInterval = null;
+
+      function formatTime(secs) {
+        const mins = Math.floor(secs / 60);
+        const remSecs = secs % 60;
+        return `${String(mins).padStart(2, '0')}:${String(remSecs).padStart(2, '0')}`;
+      }
+
+      function updateTimerDisplay() {
+        timerDisplay.textContent = formatTime(remainingSeconds);
+        if (remainingSeconds <= 300) {
+          timerDisplay.classList.add('text-amber-300');
+        } else {
+          timerDisplay.classList.remove('text-amber-300');
+        }
+      }
+
+      timerToggleBtn.addEventListener('click', () => {
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          timerToggleBtn.textContent = 'Resume';
+        } else {
+          if (remainingSeconds <= 0) remainingSeconds = INITIAL_SECONDS;
+          timerToggleBtn.textContent = 'Pause';
+          timerInterval = setInterval(() => {
+            if (remainingSeconds > 0) {
+              remainingSeconds--;
+              updateTimerDisplay();
+            } else {
+              clearInterval(timerInterval);
+              timerInterval = null;
+              timerToggleBtn.textContent = 'Time Up';
+            }
+          }, 1000);
+        }
+      });
+
+      timerResetBtn.addEventListener('click', () => {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        remainingSeconds = INITIAL_SECONDS;
+        timerToggleBtn.textContent = 'Start';
+        updateTimerDisplay();
+      });
+
+      /* -------------------------------------------------------
+         2. SECTION A: 20 MULTIPLE-CHOICE QUESTIONS DATA
+      -------------------------------------------------------- */
+      const mcqQuestions = [
+        {
+          id: 'q1',
+          num: 1,
+          topic: 'Topic 1',
+          topicLabel: 'Topic 1: Input Devices & Peripherals',
+          question: 'Which statement best defines a peripheral device?',
+          options: [
+            'The main central processing chip inside the motherboard that runs calculations',
+            'Any extra piece of hardware plugged into or connected to the main computer system to put data in, get output, or save work',
+            'A software program used to format business letters and invoices',
+            'The electrical power cord that connects a desktop computer to a wall outlet'
+          ],
+          answer: 1,
+          explanation: 'A peripheral device is any extra hardware tool plugged into or connected to the main computer system (CPU) for input, output, or storage.'
+        },
+        {
+          id: 'q2',
+          num: 2,
+          topic: 'Topic 1',
+          topicLabel: 'Topic 1: Input Devices & Peripherals',
+          question: 'Which of the following is a MANUAL input device where a person must actively type, click, tap, or speak to enter data?',
+          options: [
+            'Optical Mark Reader (OMR)',
+            'Barcode Scanner',
+            'Keyboard and Mouse',
+            'Magnetic Ink Character Reader (MICR)'
+          ],
+          answer: 2,
+          explanation: 'Keyboard & Mouse, Touchscreen, and Microphone are manual input devices because a human does the work to enter data.'
+        },
+        {
+          id: 'q3',
+          num: 3,
+          topic: 'Topic 1',
+          topicLabel: 'Topic 1: Input Devices & Peripherals',
+          question: 'How does a touchscreen detect when a user taps on the screen?',
+          options: [
+            'By scanning magnetic ink along the edges of the glass',
+            'By detecting either finger pressure or body heat',
+            'By shooting a laser beam across the keyboard',
+            'By converting sound waves into electrical impulses'
+          ],
+          answer: 1,
+          explanation: 'Touchscreens let you tap directly on the screen using your finger or a stylus by detecting either finger pressure or body heat.'
+        },
+        {
+          id: 'q4',
+          num: 4,
+          topic: 'Topic 1',
+          topicLabel: 'Topic 1: Input Devices & Peripherals',
+          question: 'Which automated input device is used by CXC to read shaded pencil bubbles on Paper 1 multiple-choice answer sheets?',
+          options: [
+            'Optical Character Reader (OCR)',
+            'Optical Mark Reader (OMR)',
+            'Magnetic Stripe Reader',
+            'Biometric Scanner'
+          ],
+          answer: 1,
+          explanation: 'An Optical Mark Reader (OMR) reads shaded pencil bubbles on paper forms and is used by CXC to mark Paper 1 multiple-choice exam sheets.'
+        },
+        {
+          id: 'q5',
+          num: 5,
+          topic: 'Topic 1',
+          topicLabel: 'Topic 1: Input Devices & Peripherals',
+          question: 'An office assistant scans a printed paper contract so the text can be edited inside a word processor. Which technology makes this possible?',
+          options: [
+            'Optical Character Reader (OCR)',
+            'Magnetic Ink Character Reader (MICR)',
+            'QR Code Scanner',
+            'Unimodal Biometrics'
+          ],
+          answer: 0,
+          explanation: 'An Optical Character Reader (OCR) scans printed paper text and converts it into editable words inside a word processor.'
+        },
+        {
+          id: 'q6',
+          num: 6,
+          topic: 'Topic 1',
+          topicLabel: 'Topic 1: Input Devices & Peripherals',
+          question: 'Banks rely on Magnetic Ink Character Readers (MICR) primarily to:',
+          options: [
+            'Scan fingerprints at the bank vault entrance',
+            'Read the special magnetic ink numbers printed along the bottom of bank cheques',
+            'Convert customer phone calls into typed emails',
+            'Scan barcodes on boxes of stationery'
+          ],
+          answer: 1,
+          explanation: 'MICR readers read the special magnetic ink numbers printed along the bottom of bank cheques.'
+        },
+        {
+          id: 'q7',
+          num: 7,
+          topic: 'Topic 1',
+          topicLabel: 'Topic 1: Input Devices & Peripherals',
+          question: 'What is the key difference between Speech-to-Text and Voice-to-Text?',
+          options: [
+            'Speech-to-Text checks WHO is speaking for security; Voice-to-Text types out WHAT words are spoken',
+            'Speech-to-Text focuses on WHAT words are spoken (live captions/dictation); Voice-to-Text focuses on WHO is speaking (vocal fingerprint for security)',
+            'Speech-to-Text only works offline; Voice-to-Text requires a laser scanner',
+            'There is no difference; both terms mean the exact same thing'
+          ],
+          answer: 1,
+          explanation: 'Speech-to-Text (Speech Recognition) focuses on WHAT words are spoken to create live text, while Voice-to-Text (Voice Recognition) checks WHO is speaking to verify identity.'
+        },
+        {
+          id: 'q8',
+          num: 8,
+          topic: 'Topic 2',
+          topicLabel: 'Topic 2: Computer Storage Devices & Memory',
+          question: 'What is the smallest basic unit of computer storage that holds just one single letter or character (such as "A" or "$")?',
+          options: [
+            '1 Gigabyte (GB)',
+            '1 Terabyte (TB)',
+            '1 Byte',
+            '1 Megahertz (MHz)'
+          ],
+          answer: 2,
+          explanation: '1 Byte is the smallest basic unit of storage and holds just one single letter or character.'
+        },
+        {
+          id: 'q9',
+          num: 9,
+          topic: 'Topic 2',
+          topicLabel: 'Topic 2: Computer Storage Devices & Memory',
+          question: 'Using the storage rule (1 TB = 1,024 GB), how many Gigabytes are equal to 2 Terabytes?',
+          options: [
+            '2,000 GB',
+            '2,048 GB',
+            '1,024 GB',
+            '512 GB'
+          ],
+          answer: 1,
+          explanation: 'Since 1 Terabyte (TB) = 1,024 Gigabytes (GB), 2 TB = 2 × 1,024 = 2,048 GB.'
+        },
+        {
+          id: 'q10',
+          num: 10,
+          topic: 'Topic 2',
+          topicLabel: 'Topic 2: Computer Storage Devices & Memory',
+          question: 'Which term describes temporary ("forgetful") memory that loses all stored data the moment electrical power is turned off?',
+          options: [
+            'Non-volatile memory',
+            'Volatile memory',
+            'Optical storage',
+            'Secondary storage'
+          ],
+          answer: 1,
+          explanation: 'Volatile memory is temporary memory that needs electricity to hold data—if the power cuts off, everything inside is erased.'
+        },
+        {
+          id: 'q11',
+          num: 11,
+          topic: 'Topic 2',
+          topicLabel: 'Topic 2: Computer Storage Devices & Memory',
+          question: 'How does ROM (Read-Only Memory) differ from RAM (Random-Access Memory)?',
+          options: [
+            'ROM is temporary working memory; RAM permanently stores startup rules',
+            'ROM is non-volatile and holds permanent startup instructions; RAM is volatile and holds active apps/files currently in use',
+            'ROM is plugged in via USB; RAM is stored on internet servers',
+            'ROM uses laser beams; RAM uses spinning magnetic platters'
+          ],
+          answer: 1,
+          explanation: 'ROM is primary, non-volatile memory holding permanent startup rules, while RAM is primary, volatile memory holding active programs you are using right now.'
+        },
+        {
+          id: 'q12',
+          num: 12,
+          topic: 'Topic 2',
+          topicLabel: 'Topic 2: Computer Storage Devices & Memory',
+          question: 'What is the main job of Cache Memory inside a computer?',
+          options: [
+            'To permanently back up photos when the laptop is unplugged',
+            'To act as super-fast helper memory that grabs frequently used data from RAM so the CPU can reach it instantly',
+            'To scan incoming internet emails for computer viruses',
+            'To read music and movies off shiny plastic discs'
+          ],
+          answer: 1,
+          explanation: 'Cache memory is super-fast, volatile helper memory that grabs frequently used information from RAM so the computer\'s brain (CPU) can access it instantly.'
+        },
+        {
+          id: 'q13',
+          num: 13,
+          topic: 'Topic 2',
+          topicLabel: 'Topic 2: Computer Storage Devices & Memory',
+          question: 'Why are Solid State Drives (SSDs) and USB flash drives faster and more durable than traditional hard drives?',
+          options: [
+            'They use microchips with no moving parts instead of spinning magnetic platters',
+            'They use high-powered laser beams to burn data onto glass',
+            'They are connected directly to a bank\'s mainframe',
+            'They require constant battery power to keep files saved'
+          ],
+          answer: 0,
+          explanation: 'SSDs, USB flash drives, pen drives, and memory cards store data on microchips rather than spinning disks, making them faster and less fragile if dropped.'
+        },
+        {
+          id: 'q14',
+          num: 14,
+          topic: 'Topic 2',
+          topicLabel: 'Topic 2: Computer Storage Devices & Memory',
+          question: 'CDs, DVDs, and Blu-ray Discs™ belong to which storage category?',
+          options: [
+            'Magnetic platter storage',
+            'Optical discs read and written using laser light beams',
+            'Volatile primary memory',
+            'Network-Attached Storage (NAS)'
+          ],
+          answer: 1,
+          explanation: 'Optical discs (CDs, DVDs, and Blu-ray Discs™) are flat plastic discs read and written using laser light beams.'
+        },
+        {
+          id: 'q15',
+          num: 15,
+          topic: 'Topic 2',
+          topicLabel: 'Topic 2: Computer Storage Devices & Memory',
+          question: 'Which statement correctly identifies one advantage and one disadvantage of Cloud-Based Storage (e.g., Google Drive)?',
+          options: [
+            'Advantage: Works without internet; Disadvantage: Cannot open files on a phone',
+            'Advantage: Files are accessible from any device with internet and stay safe if your laptop breaks; Disadvantage: Requires internet access and extra space often costs money',
+            'Advantage: Never requires a password; Disadvantage: Deletes files every time you log out',
+            'Advantage: Uses spinning disks inside your keyboard; Disadvantage: Only holds 1 Byte'
+          ],
+          answer: 1,
+          explanation: 'Cloud storage lets you reach files from any internet-connected device and keeps work safe if your laptop breaks, but you need internet to access files and extra space often costs money.'
+        },
+        {
+          id: 'q16',
+          num: 16,
+          topic: 'Topic 3',
+          topicLabel: 'Topic 3: Cyber-Security, Care & Ergonomics',
+          question: 'A secure server room scanner requires both a palm print AND a voice print before unlocking the door. This is an example of:',
+          options: [
+            'Unimodal biometrics',
+            'Multimodal biometrics',
+            'Open punctuation',
+            'Optical mark reading'
+          ],
+          answer: 1,
+          explanation: 'Unimodal biometrics checks one physical feature (like a fingerprint), whereas Multimodal biometrics checks two or more features together (like a palm print + voice print).'
+        },
+        {
+          id: 'q17',
+          num: 17,
+          topic: 'Topic 3',
+          topicLabel: 'Topic 3: Cyber-Security, Care & Ergonomics',
+          question: 'Why do schools and offices block unused USB ports and connect computers to a UPS (Uninterruptible Power Supply)?',
+          options: [
+            'Blocking USB ports stops unauthorized file theft/viruses; a UPS provides battery backup so sudden power cuts do not wipe out unsaved work',
+            'Blocking USB ports speeds up internet Wi-Fi; a UPS cleans dust off the monitor',
+            'Blocking USB ports makes the keyboard wireless; a UPS prints cheques',
+            'Blocking USB ports increases RAM size; a UPS formats business letters'
+          ],
+          answer: 0,
+          explanation: 'Blocking unused USB ports stops people from plugging in random flash drives to steal files or spread viruses, while a UPS battery backup prevents abrupt shutdowns during power outages.'
+        },
+        {
+          id: 'q18',
+          num: 18,
+          topic: 'Topic 3',
+          topicLabel: 'Topic 3: Cyber-Security, Care & Ergonomics',
+          question: 'What is the difference between a Firewall and Antivirus software?',
+          options: [
+            'A Firewall checks internet traffic coming in and going out to block hackers; Antivirus software scans your computer to catch, block, and delete viruses',
+            'A Firewall cools down the CPU fan; Antivirus software adjusts monitor height',
+            'A Firewall deletes old Word documents; Antivirus software backs up files to CDs',
+            'They are both types of ergonomic office chairs'
+          ],
+          answer: 0,
+          explanation: 'A Firewall acts as a digital security guard filtering network traffic to block hackers, while Antivirus software scans your computer to catch, block, and delete viruses.'
+        },
+        {
+          id: 'q19',
+          num: 19,
+          topic: 'Topic 3',
+          topicLabel: 'Topic 3: Cyber-Security, Care & Ergonomics',
+          question: 'According to healthy ergonomic computer habits, what is the "20-20-20 Eye Rule"?',
+          options: [
+            'Sit 20 inches from the screen, type 20 words per minute, and take 20 lunch breaks',
+            'Every 20 minutes, look away at something 20 feet away for at least 20 seconds to rest your eyes',
+            'Keep screen brightness at 20%, volume at 20%, and chair tilt at 20 degrees',
+            'Clean your keyboard every 20 days for 20 minutes using 20 wipes'
+          ],
+          answer: 1,
+          explanation: 'The 20-20-20 Eye Rule states: every 20 minutes, look away at something 20 feet away for at least 20 seconds to prevent eye strain.'
+        },
+        {
+          id: 'q20',
+          num: 20,
+          topic: 'Topic 4',
+          topicLabel: 'Topic 4: Business Documents & SBA Basics',
+          question: 'In a Blocked-Style Business Letter using Open Punctuation, which layout rule is correct?',
+          options: [
+            'Every line starts flush against the left margin (no indents), and commas are left out after the greeting and sign-off',
+            'The date and sign-off are centered in the middle of the page, and every paragraph is indented by 1 inch',
+            'Only the headings TO:, FROM:, DATE:, and SUBJECT: are used at the top',
+            'A tear-off slip must always be stapled to the top corner'
+          ],
+          answer: 0,
+          explanation: 'Blocked Style means every single line starts flush against the left margin (no indents), and Open Punctuation leaves out commas after the greeting (Dear Mr Clarke) and sign-off (Yours faithfully).'
+        }
+      ];
+
+      /* -------------------------------------------------------
+         3. SECTION B: 10 MATCHING / CLASSIFICATION ITEMS DATA
+      -------------------------------------------------------- */
+      const storageMatchOptions = [
+        'Primary & Volatile (Temporary working memory)',
+        'Primary & Non-Volatile (Permanent startup chip)',
+        'Primary & Non-Volatile (Main internal magnetic drive)',
+        'Secondary & Non-Volatile (Portable microchip flash storage)',
+        'Online / Remote Secondary Storage (Internet servers)'
+      ];
+
+      const storageMatchQuestions = [
+        {
+          id: 'q21',
+          num: 21,
+          topic: 'Topic 2',
+          prompt: 'RAM (Random-Access Memory)',
+          answer: 'Primary & Volatile (Temporary working memory)',
+          explanation: 'RAM is built-in (Primary) and wipes clean when power turns off (Volatile).'
+        },
+        {
+          id: 'q22',
+          num: 22,
+          topic: 'Topic 2',
+          prompt: 'ROM (Read-Only Memory)',
+          answer: 'Primary & Non-Volatile (Permanent startup chip)',
+          explanation: 'ROM is built-in (Primary) and permanently keeps startup instructions without electricity (Non-Volatile).'
+        },
+        {
+          id: 'q23',
+          num: 23,
+          topic: 'Topic 2',
+          prompt: 'USB Flash Drive / Pen Drive (SSD)',
+          answer: 'Secondary & Non-Volatile (Portable microchip flash storage)',
+          explanation: 'A USB flash drive is extra portable storage (Secondary) that uses microchips and keeps files saved without power (Non-Volatile).'
+        },
+        {
+          id: 'q24',
+          num: 24,
+          topic: 'Topic 2',
+          prompt: 'IHDD (Internal Hard Disk Drive)',
+          answer: 'Primary & Non-Volatile (Main internal magnetic drive)',
+          explanation: 'The IHDD is the main built-in storage drive inside the computer (Primary) that permanently saves files on magnetic platters (Non-Volatile).'
+        },
+        {
+          id: 'q25',
+          num: 25,
+          topic: 'Topic 2',
+          prompt: 'Google Drive / Microsoft OneDrive',
+          answer: 'Online / Remote Secondary Storage (Internet servers)',
+          explanation: 'Google Drive and OneDrive are Cloud-Based Storage services that save files over the internet onto remote servers.'
+        }
+      ];
+
+      const sbaMatchOptions = [
+        'One standard letter sent to many customers with a return section at the bottom',
+        'A short internal message between workers using TO:, FROM:, DATE:, and SUBJECT:',
+        'The official written record of what was discussed and decided during a meeting',
+        'Neat rows and columns used for price lists or invoices with formulas like =SUM()',
+        'An announcement of when/where a meeting happens paired with a numbered list of topics'
+      ];
+
+      const sbaMatchQuestions = [
+        {
+          id: 'q26',
+          num: 26,
+          topic: 'Topic 4',
+          prompt: 'Circular Letter with Tear-Off Slip',
+          answer: 'One standard letter sent to many customers with a return section at the bottom',
+          explanation: 'A Circular Letter with Tear-Off Slip sends the same message to many customers and includes a small return section at the bottom.'
+        },
+        {
+          id: 'q27',
+          num: 27,
+          topic: 'Topic 4',
+          prompt: 'Memorandum (Memo)',
+          answer: 'A short internal message between workers using TO:, FROM:, DATE:, and SUBJECT:',
+          explanation: 'A Memo is an internal company message using the four standard headings: TO:, FROM:, DATE:, and SUBJECT:.'
+        },
+        {
+          id: 'q28',
+          num: 28,
+          topic: 'Topic 4',
+          prompt: 'Minutes of a Meeting',
+          answer: 'The official written record of what was discussed and decided during a meeting',
+          explanation: 'Minutes of a Meeting serve as the official written record of discussions and decisions made at a meeting.'
+        },
+        {
+          id: 'q29',
+          num: 29,
+          topic: 'Topic 4',
+          prompt: 'Tabular Work',
+          answer: 'Neat rows and columns used for price lists or invoices with formulas like =SUM()',
+          explanation: 'Tabular Work organizes figures into neat rows and columns for invoices, price lists, or financial statements.'
+        },
+        {
+          id: 'q30',
+          num: 30,
+          topic: 'Topic 4',
+          prompt: 'Notice of Meeting & Agenda',
+          answer: 'An announcement of when/where a meeting happens paired with a numbered list of topics',
+          explanation: 'A Notice of Meeting & Agenda tells members when and where a meeting will occur alongside a numbered list of topics.'
+        }
+      ];
+
+      /* -------------------------------------------------------
+         4. RENDER SECTION A & SECTION B CARDS
+      -------------------------------------------------------- */
+      const mcqContainer = document.getElementById('mcq-container');
+      const letters = ['A', 'B', 'C', 'D'];
+
+      mcqQuestions.forEach(q => {
+        const card = document.createElement('div');
+        card.id = `card-${q.id}`;
+        card.className = 'question-card rounded-xl border border-[#e2e8f0] bg-[#f8fafc] p-5 transition';
+
+        const optionsHtml = q.options.map((optText, idx) => `
+          <label class="option-label" data-q="${q.id}" data-opt="${idx}">
+            <input type="radio" name="${q.id}" value="${idx}" />
+            <span class="text-sm text-[#0f294a] leading-snug">
+              <strong class="text-[#1e3a8a] mr-1">${letters[idx]}.</strong> ${optText}
+            </span>
+          </label>
+        `).join('');
+
+        card.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+            <span class="inline-flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-md bg-[#0f294a] text-white text-xs font-extrabold">Q${q.num}</span>
+              <span class="text-xs font-semibold text-[#1e3a8a]">${q.topicLabel}</span>
+            </span>
+            <span id="status-${q.id}" class="text-xs font-bold text-slate-400">1 mark</span>
+          </div>
+          <p class="text-sm sm:text-base font-bold text-[#0f294a] mb-3.5 leading-snug">${q.question}</p>
+          <div class="grid grid-cols-1 gap-2.5">
+            ${optionsHtml}
+          </div>
+          <div id="feedback-${q.id}" class="hidden mt-3.5 p-3.5 rounded-xl text-xs sm:text-sm border"></div>
+        `;
+
+        mcqContainer.appendChild(card);
+      });
+
+      function renderMatchingRows(containerId, itemsList, optionsList) {
+        const container = document.getElementById(containerId);
+        itemsList.forEach(item => {
+          const row = document.createElement('div');
+          row.id = `card-${item.id}`;
+          row.className = 'question-card rounded-xl border border-[#e2e8f0] bg-[#f8fafc] p-4 transition';
+
+          const selectOpts = optionsList.map(opt => `<option value="${opt}">${opt}</option>`).join('');
+
+          row.innerHTML = `
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+              <div class="flex items-center gap-2.5">
+                <span class="px-2.5 py-0.5 rounded-md bg-[#0f294a] text-white text-xs font-extrabold shrink-0">Q${item.num}</span>
+                <span class="text-sm sm:text-base font-bold text-[#0f294a]">${item.prompt}</span>
+              </div>
+              <div class="flex items-center gap-2 w-full md:w-[58%]">
+                <select
+                  id="select-${item.id}"
+                  name="${item.id}"
+                  aria-label="Match for ${item.prompt}"
+                  class="match-select w-full px-3.5 py-2.5 text-xs sm:text-sm font-medium text-[#0f294a] bg-white border border-[#cbd5e1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] transition"
+                >
+                  <option value="">-- Select matching description --</option>
+                  ${selectOpts}
+                </select>
+                <span id="status-${item.id}" class="text-xs font-bold text-slate-400 shrink-0 w-12 text-right">1 mk</span>
+              </div>
+            </div>
+            <div id="feedback-${item.id}" class="hidden mt-3 p-3 rounded-xl text-xs sm:text-sm border"></div>
+          `;
+
+          container.appendChild(row);
+        });
+      }
+
+      renderMatchingRows('matching-storage-container', storageMatchQuestions, storageMatchOptions);
+      renderMatchingRows('matching-sba-container', sbaMatchQuestions, sbaMatchOptions);
+
+      /* -------------------------------------------------------
+         5. LIVE ANSWER PROGRESS COUNTERS
+      -------------------------------------------------------- */
+      const sectionAProgress = document.getElementById('section-a-progress');
+      const sectionBProgress = document.getElementById('section-b-progress');
+      const examForm = document.getElementById('mock-exam-form');
+
+      function updateAnsweredCounters() {
+        let aCount = 0;
+        mcqQuestions.forEach(q => {
+          if (document.querySelector(`input[name="${q.id}"]:checked`)) aCount++;
+        });
+        sectionAProgress.textContent = `${aCount} / 20 Answered`;
+
+        let bCount = 0;
+        [...storageMatchQuestions, ...sbaMatchQuestions].forEach(item => {
+          const sel = document.getElementById(`select-${item.id}`);
+          if (sel && sel.value !== '') bCount++;
+        });
+        sectionBProgress.textContent = `${bCount} / 10 Matched`;
+
+        return { aCount, bCount, totalAnswered: aCount + bCount };
+      }
+
+      examForm.addEventListener('change', updateAnsweredCounters);
+
+      /* -------------------------------------------------------
+         6. GRADING ENGINE & EXPLANATION FEEDBACK
+      -------------------------------------------------------- */
+      const scoreBanner = document.getElementById('score-banner');
+      const scoreHeadline = document.getElementById('score-headline');
+      const scoreSubtext = document.getElementById('score-subtext');
+      const gradeTierBadge = document.getElementById('grade-tier-badge');
+      const validationBanner = document.getElementById('validation-banner');
+      const validationText = document.getElementById('validation-text');
+      const gradeAnywayBtn = document.getElementById('grade-anyway-btn');
+      const dismissValidationBtn = document.getElementById('dismiss-validation-btn');
+      const resetExamBtn = document.getElementById('reset-exam-btn');
+
+      function gradeMockExam() {
+        validationBanner.classList.add('hidden');
+
+        // Stop timer if running
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          timerToggleBtn.textContent = 'Finished';
+        }
+
+        let totalScore = 0;
+        const topicScores = {
+          'Topic 1': { earned: 0, max: 7 },
+          'Topic 2': { earned: 0, max: 13 },
+          'Topic 3': { earned: 0, max: 4 },
+          'Topic 4': { earned: 0, max: 6 }
+        };
+
+        // Grade Section A (MCQs)
+        mcqQuestions.forEach(q => {
+          const card = document.getElementById(`card-${q.id}`);
+          const statusEl = document.getElementById(`status-${q.id}`);
+          const feedbackEl = document.getElementById(`feedback-${q.id}`);
+          const selectedInput = document.querySelector(`input[name="${q.id}"]:checked`);
+          const selectedVal = selectedInput ? parseInt(selectedInput.value, 10) : null;
+
+          // Clear previous option highlights
+          card.querySelectorAll('.option-label').forEach(lbl => {
+            lbl.classList.remove('correct-choice', 'wrong-choice');
+          });
+
+          const correctLabel = card.querySelector(`.option-label[data-opt="${q.answer}"]`);
+          if (correctLabel) correctLabel.classList.add('correct-choice');
+
+          const isCorrect = selectedVal === q.answer;
+          if (isCorrect) {
+            totalScore++;
+            topicScores[q.topic].earned++;
+            card.classList.remove('graded-incorrect');
+            card.classList.add('graded-correct');
+            statusEl.textContent = '✓ 1 / 1';
+            statusEl.className = 'text-xs font-extrabold text-green-700';
+            feedbackEl.className = 'mt-3.5 p-3.5 rounded-xl text-xs sm:text-sm border border-green-300 bg-green-100/70 text-green-950';
+            feedbackEl.innerHTML = `<strong>Correct!</strong> ${q.explanation}`;
+          } else {
+            if (selectedVal !== null) {
+              const wrongLabel = card.querySelector(`.option-label[data-opt="${selectedVal}"]`);
+              if (wrongLabel) wrongLabel.classList.add('wrong-choice');
+            }
+            card.classList.remove('graded-correct');
+            card.classList.add('graded-incorrect');
+            statusEl.textContent = '✗ 0 / 1';
+            statusEl.className = 'text-xs font-extrabold text-red-700';
+            feedbackEl.className = 'mt-3.5 p-3.5 rounded-xl text-xs sm:text-sm border border-red-300 bg-red-100/70 text-red-950';
+            const statusPrefix = selectedVal === null ? 'Not answered.' : `Incorrect (You chose ${letters[selectedVal]}).`;
+            feedbackEl.innerHTML = `<strong>${statusPrefix} Correct Answer: ${letters[q.answer]}.</strong> ${q.explanation}`;
+          }
+
+          feedbackEl.classList.remove('hidden');
+        });
+
+        // Grade Section B (Matching Dropdowns)
+        [...storageMatchQuestions, ...sbaMatchQuestions].forEach(item => {
+          const card = document.getElementById(`card-${item.id}`);
+          const sel = document.getElementById(`select-${item.id}`);
+          const statusEl = document.getElementById(`status-${item.id}`);
+          const feedbackEl = document.getElementById(`feedback-${item.id}`);
+          const isCorrect = sel.value === item.answer;
+
+          if (isCorrect) {
+            totalScore++;
+            topicScores[item.topic].earned++;
+            card.classList.remove('graded-incorrect');
+            card.classList.add('graded-correct');
+            sel.classList.remove('border-red-500');
+            sel.classList.add('border-green-600', 'bg-green-50');
+            statusEl.textContent = '✓ 1/1';
+            statusEl.className = 'text-xs font-extrabold text-green-700 shrink-0 w-12 text-right';
+            feedbackEl.className = 'mt-3 p-3 rounded-xl text-xs sm:text-sm border border-green-300 bg-green-100/70 text-green-950';
+            feedbackEl.innerHTML = `<strong>Correct!</strong> ${item.explanation}`;
+          } else {
+            card.classList.remove('graded-correct');
+            card.classList.add('graded-incorrect');
+            sel.classList.remove('border-green-600', 'bg-green-50');
+            sel.classList.add('border-red-500');
+            statusEl.textContent = '✗ 0/1';
+            statusEl.className = 'text-xs font-extrabold text-red-700 shrink-0 w-12 text-right';
+            feedbackEl.className = 'mt-3 p-3 rounded-xl text-xs sm:text-sm border border-red-300 bg-red-100/70 text-red-950';
+            const prefix = sel.value === '' ? 'Not answered.' : 'Incorrect.';
+            feedbackEl.innerHTML = `<strong>${prefix} Correct Match:</strong> ${item.answer}. <em>(${item.explanation})</em>`;
+          }
+
+          feedbackEl.classList.remove('hidden');
+        });
+
+        // Calculate Percentage & Tier
+        const percentage = Math.round((totalScore / 30) * 100);
+        const studentName = document.getElementById('student-name').value.trim();
+        const namePrefix = studentName ? `${studentName} — ` : '';
+
+        let tierText = '';
+        let adviceText = '';
+        if (percentage >= 85) {
+          tierText = 'Grade Tier: Distinction (Exam Ready!)';
+          adviceText = 'Outstanding work! You have mastered Input Devices, Storage & Memory, Cyber-Security, Ergonomics, and SBA Document layouts.';
+        } else if (percentage >= 70) {
+          tierText = 'Grade Tier: Credit (Strong Performance)';
+          adviceText = 'Great job! Review the few red items below and check the Study Guide to push your score into the Distinction range.';
+        } else if (percentage >= 50) {
+          tierText = 'Grade Tier: Pass (Keep Revising)';
+          adviceText = 'Solid effort! Use the explanations below and click "Review Study Guide" to strengthen the topics you missed.';
+        } else {
+          tierText = 'Grade Tier: Needs Review';
+          adviceText = 'Don\'t worry—this practice exam shows you exactly what to focus on. Click "Review Study Guide" to study each topic card before trying again.';
+        }
+
+        gradeTierBadge.textContent = tierText;
+        scoreHeadline.textContent = `${namePrefix}Your Score: ${totalScore} / 30 (${percentage}%)`;
+        scoreSubtext.textContent = adviceText;
+
+        document.getElementById('breakdown-t1').textContent = `${topicScores['Topic 1'].earned} / ${topicScores['Topic 1'].max}`;
+        document.getElementById('breakdown-t2').textContent = `${topicScores['Topic 2'].earned} / ${topicScores['Topic 2'].max}`;
+        document.getElementById('breakdown-t3').textContent = `${topicScores['Topic 3'].earned} / ${topicScores['Topic 3'].max}`;
+        document.getElementById('breakdown-t4').textContent = `${topicScores['Topic 4'].earned} / ${topicScores['Topic 4'].max}`;
+
+        scoreBanner.classList.remove('hidden');
+        scoreBanner.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      examForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const { totalAnswered } = updateAnsweredCounters();
+        if (totalAnswered < 30) {
+          const remaining = 30 - totalAnswered;
+          validationText.textContent = `You have answered ${totalAnswered} of 30 questions (${remaining} remaining). Do you want to keep answering or grade your exam anyway?`;
+          validationBanner.classList.remove('hidden');
+          validationBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          gradeMockExam();
+        }
+      });
+
+      gradeAnywayBtn.addEventListener('click', gradeMockExam);
+      dismissValidationBtn.addEventListener('click', () => {
+        validationBanner.classList.add('hidden');
+      });
+
+      /* -------------------------------------------------------
+         7. RESET EXAM HANDLER
+      -------------------------------------------------------- */
+      resetExamBtn.addEventListener('click', () => {
+        examForm.reset();
+        scoreBanner.classList.add('hidden');
+        validationBanner.classList.add('hidden');
+
+        document.querySelectorAll('.question-card').forEach(card => {
+          card.classList.remove('graded-correct', 'graded-incorrect');
+        });
+
+        document.querySelectorAll('.option-label').forEach(lbl => {
+          lbl.classList.remove('correct-choice', 'wrong-choice');
+        });
+
+        document.querySelectorAll('.match-select').forEach(sel => {
+          sel.classList.remove('border-green-600', 'bg-green-50', 'border-red-500');
+        });
+
+        mcqQuestions.forEach(q => {
+          const statusEl = document.getElementById(`status-${q.id}`);
+          const feedbackEl = document.getElementById(`feedback-${q.id}`);
+          statusEl.textContent = '1 mark';
+          statusEl.className = 'text-xs font-bold text-slate-400';
+          feedbackEl.classList.add('hidden');
+        });
+
+        [...storageMatchQuestions, ...sbaMatchQuestions].forEach(item => {
+          const statusEl = document.getElementById(`status-${item.id}`);
+          const feedbackEl = document.getElementById(`feedback-${item.id}`);
+          statusEl.textContent = '1 mk';
+          statusEl.className = 'text-xs font-bold text-slate-400 shrink-0 w-12 text-right';
+          feedbackEl.classList.add('hidden');
+        });
+
+        updateAnsweredCounters();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
